@@ -2,6 +2,25 @@
     background-color: lightblue;
 }
 
+blockquote {
+    border: none;
+    font-size:smaller;
+    font-style:italic;
+}
+
 #content {
     background-color: whitesmoke;
+    margin-top: 0px;
+}
+
+#navheader {
+    margin-bottom: 0px;
+}
+
+#wordcloud {
+    margin-top: 20px;
+}
+
+.col-xs-quote-align {
+    width: 32.0%;
 }
