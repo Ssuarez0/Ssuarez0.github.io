@@ -1,6 +1,6 @@
 ﻿body {
+    background-image: url(../images/office2.jpg);
     background-color: #75a3f5;
-    background-image: url(/media/images/office2.jpg);
     background-size: 100%;
 }
 
@@ -8,6 +8,7 @@ blockquote {
     border: none;
     font-size:smaller;
     font-style:italic;
+    padding: 0px;
 }
 
 footer.block-citation {
@@ -35,4 +36,18 @@ footer.block-citation {
 .section-divider {
     border-top: 1px solid;
     border-color: white;
+}
+
+.subsection-divider {
+    border-top: 1px solid;
+    border-color: white;
+    margin: 0px;
+}
+
+.subsection-header {
+    margin-bottom: 0px;
+}
+
+.profile-image {
+    max-height: 250px;
 }
