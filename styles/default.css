@@ -1,6 +1,7 @@
 ﻿body {
     background-color: #75a3f5;
-    background-image: url(/media/images/office2.jpg)
+    background-image: url(/media/images/office2.jpg);
+    background-size: 100%;
 }
 
 blockquote {
