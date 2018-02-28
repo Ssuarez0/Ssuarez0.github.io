@@ -1,5 +1,6 @@
 ﻿body {
-    background-color: lightblue;
+    background-color: #75a3f5;
+    background-image: url(/media/images/office2.jpg)
 }
 
 blockquote {
@@ -8,8 +9,13 @@ blockquote {
     font-style:italic;
 }
 
+footer.block-citation {
+    color: white;
+}
+
 #content {
-    background-color: whitesmoke;
+    background-color: #30664f;
+    color: white;
     margin-top: 0px;
 }
 
@@ -23,4 +29,9 @@ blockquote {
 
 .col-xs-quote-align {
     width: 32.0%;
+}
+
+.section-divider {
+    border-top: 1px solid;
+    border-color: white;
 }
