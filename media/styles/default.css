@@ -49,5 +49,10 @@ footer.block-citation {
 }
 
 .profile-image {
-    max-height: 250px;
+    max-height: 300px;
+    margin-bottom: 20px;
+}
+
+.skills-list h3 {
+    margin: 0px;
 }
