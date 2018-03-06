@@ -19,6 +19,7 @@ footer.block-citation {
     background-color: #30664f;
     color: white;
     margin-top: 0px;
+    padding: 0px;
 }
 
 #navheader {
@@ -29,23 +30,19 @@ footer.block-citation {
     margin-top: 20px;
 }
 
-.col-xs-quote-align {
-    width: 32.0%;
-}
-
 .section-divider {
-    border-top: 1px solid;
+    border-top: 4px solid;
     border-color: white;
+    width: 40%;
+    text-align: center;
 }
 
-.subsection-divider {
-    border-top: 1px solid;
-    border-color: white;
-    margin: 0px;
+.enclosed-anchor {
+    color: white;
 }
 
-.subsection-header {
-    margin-bottom: 0px;
+.enclosed-anchor:hover {
+    color: white;
 }
 
 .profile-image {
@@ -55,4 +52,13 @@ footer.block-citation {
 
 .skills-list h3 {
     margin: 0px;
+}
+
+.primary-logo {
+    background-color: #05241a;
+    padding: 10px 0px 30px 0px;
+}
+
+.col-xs-offset-05 {
+    margin-left: 4.16666667%;
 }
