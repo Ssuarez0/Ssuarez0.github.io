@@ -5,16 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--<link rel="shortcut icon" type="image/png" href="media/images/logo_sizes/favicon-96x96.png" /> -->
         <title>Software Development</title>
+        <link rel="stylesheet" href="media/styles/dist/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="media/styles/default.css" />
         <script type="text/javascript" src="scripts/dist/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="media/styles/dist/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="media/styles/dist/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
         <script type="text/javascript" src="media/styles/dist/fontawesome-all.min.js"></script>
         <script type="text/javascript" src="scripts/portfolio.js"></script>
-        <link rel="stylesheet" href="media/styles/default.css" />
+
     </head>
-    <body>
+    <body data-spy="scroll" data-target="#navheader" data-offset="0">
         <a id="top" name="home"></a>
-        <nav id="navheader" class="navbar navbar-inverse">
+        <nav id="navheader" class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#portfolio-navigation" aria-expanded="false">
@@ -35,12 +36,10 @@
             </div>
         </nav>
 
-        <main>
             <div class="container" id="content">
                 <div class="col-xs-12 primary-logo">
                     <img src="media/images/wordcloud.PNG" id="wordcloud" class="img-responsive img-circle center-block" alt="skill word cloud" />
                 </div>
-                <section>
                     <div id="about" class="col-xs-12 text-center">
                         <h2>ABOUT</h2>
                         <hr id="top" class="section-divider" />
@@ -77,8 +76,6 @@
                             </div>
                         </div>
                     </div>
-                </section>
-                <section>
                     <div id="portfolio" class="col-xs-12 text-center">
                         <h3>PORTFOLIO</h3>
                         <hr class="section-divider" />
@@ -90,43 +87,53 @@
                                 <img class="img-responsive project-thumbnail" src="media/images/Revaliir.PNG"
                                      alt="Picture of Revaliir's portal page."
                                      title="Picture of Revaliir's portal page." />
-                                <a class="project-links" title="Website" target="_blank" href="https://revaliir.net/"><i class="fas fa-globe"></i></a>
+                                <div class="project-links">
+                                    <a class="project-link" title="Website" target="_blank" href="https://revaliir.net/"><i class="fas fa-globe"></i></a>
+                                </div>
                             </li>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
                                 <img class="img-responsive project-thumbnail" src="media/images/CS-Club-Hackathon.PNG"
                                      alt="Picture of CS Club's Hackathon Website Fall 2017."
                                      title="Picture of CS Club's Hackathon Website Fall 2017." />
-                                <a class="project-links" title="Website" target="_blank" href="https://hopper.csustan.edu/~ssuarez/cs-club-hackathon/index.html"><i class="fas fa-globe"></i></a>
-                                <a class="project-links" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS-Club-Hackathon"><i class="fab fa-github"></i></a>
+                                <div class="project-links">
+                                    <a class="project-link" title="Website" target="_blank" href="https://hopper.csustan.edu/~ssuarez/cs-club-hackathon/index.html"><i class="fas fa-globe"></i></a>
+                                    <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS-Club-Hackathon"><i class="fab fa-github"></i></a>
+                                </div>
                             </li>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
                                 <img class="img-responsive project-thumbnail" src="media/images/LibraryDatabase.PNG"
                                      alt="Picture of a library database query page."
                                      title="Picture of a library database query page." />
-                                <a class="project-links" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4250-Library-Database"><i class="fab fa-github"></i></a>
+                                <div class="project-links">
+                                    <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4250-Library-Database"><i class="fab fa-github"></i></a>
+                                </div>
                             </li>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
                                 <img class="img-responsive project-thumbnail" src="media/images/BirdDatabase.PNG"
                                      alt="Picture of a Stanislaus County Bird Encyclopedia Index."
                                      title="Picture of a Stanislaus County Bird Encyclopedia Index." />
-                                <a class="project-links" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4950---Bird-Encyclopedia"><i class="fab fa-github"></i></a>
+                                <div class="project-links">
+                                    <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4950---Bird-Encyclopedia"><i class="fab fa-github"></i></a>
+                                </div>
                             </li>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
                                 <img class="img-responsive project-thumbnail" src="media/images/BeePesticideModel.PNG"
                                      alt="Picture of a bee and pesticide simulation."
                                      title="Picture of a bee and pesticide simulation." />
-                                <a class="project-links" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS3200-Bee-Pesticide-Simulation"><i class="fab fa-github"></i></a>
+                                <div class="project-links">
+                                    <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS3200-Bee-Pesticide-Simulation"><i class="fab fa-github"></i></a>
+                                </div>
                             </li>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
                                 <img class="img-responsive project-thumbnail" src="media/images/BattleArenaSample.PNG"
                                      alt="Picture of a Windows Console running an RPG battle arena."
                                      title="Picture of a Windows Console running an RPG battle arena." />
-                                <a class="project-links" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4480---Battle-Arena-AI"><i class="fab fa-github"></i></a>
+                                <div class="project-links">
+                                    <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4480---Battle-Arena-AI"><i class="fab fa-github"></i></a>
+                                </div>
                             </li>
                         </ul>
                     </div>
-                </section>
-
             </div>
             <div id="contact" class="col-xs-12 text-center contact-details">
                 <h3>CONTACT ME</h3>
@@ -141,7 +148,6 @@
                     <i class="fab fa-github-square social-media-links"></i>
                 </a>
             </div>
-        </main>
         <div class="mobile-home text-center">
             <a href="#top" class="scrollable home-button">
                 <i class="fas fa-home"></i>
