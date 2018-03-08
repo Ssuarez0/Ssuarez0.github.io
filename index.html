@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="media/styles/default.css" />
     </head>
     <body>
+        <a id="top" name="home"></a>
         <nav id="navheader" class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
@@ -26,21 +27,21 @@
                 </div>
                 <div class="collapse navbar-collapse" id="portfolio-navigation">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="scrollable" href="#top">About</a></li>
+                        <li><a class="scrollable" href="#about">About</a></li>
                         <li><a class="scrollable" href="#portfolio">Portfolio</a></li>
                         <li><a class="scrollable" href="#contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <a id="top" name="home"></a>
+
         <main>
             <div class="container" id="content">
                 <div class="col-xs-12 primary-logo">
                     <img src="media/images/wordcloud.PNG" id="wordcloud" class="img-responsive img-circle center-block" alt="skill word cloud" />
                 </div>
-                <section id="about">
-                    <div class="col-xs-12 text-center">
+                <section>
+                    <div id="about" class="col-xs-12 text-center">
                         <h2>ABOUT</h2>
                         <hr id="top" class="section-divider" />
                     </div>
@@ -81,55 +82,71 @@
                     <div id="portfolio" class="col-xs-12 text-center">
                         <h3>PORTFOLIO</h3>
                         <hr class="section-divider" />
-                        All projects featured here, with the exception of Revaliir, have their code hosted on public repositories on my Github. Click the <i class="fab fa-github"></i> under the project
-                        to go to their respective github or the <i class="fas fa-globe"></i> to visit a live website hosting them!
+                        All projects featured here, with the exception of Revaliir, have their code hosted on public repositories on my Github. Click the
+                        <i class="fab fa-github"></i> under a project thumbnail to go to its respective github or the <i class="fas fa-globe"></i> to visit
+                        a live website hosting them!
                         <ul>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                                        <img class="img-responsive project-thumbnail" src="media/images/Revaliir.PNG"
-                                             alt="Picture of Revaliir's portal page."
-                                             title="Picture of Revaliir's portal page." />
-                                        <a target="_blank" href="https://revaliir.net/"><i class="fas fa-globe"></i></a>
+                                <img class="img-responsive project-thumbnail" src="media/images/Revaliir.PNG"
+                                     alt="Picture of Revaliir's portal page."
+                                     title="Picture of Revaliir's portal page." />
+                                <a class="project-links" title="Website" target="_blank" href="https://revaliir.net/"><i class="fas fa-globe"></i></a>
                             </li>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                                        <img class="img-responsive project-thumbnail" src="media/images/CS-Club-Hackathon.PNG"
-                                             alt="Picture of CS Club's Hackathon Website Fall 2017."
-                                             title="Picture of CS Club's Hackathon Website Fall 2017." />
-                                        <a target="_blank" href="https://hopper.csustan.edu/~ssuarez/cs-club-hackathon/index.html"><i class="fas fa-globe"></i></a>
-                                        <a target="_blank" href="https://github.com/Ssuarez0/CS-Club-Hackathon"><i class="fab fa-github"></i></a>
+                                <img class="img-responsive project-thumbnail" src="media/images/CS-Club-Hackathon.PNG"
+                                     alt="Picture of CS Club's Hackathon Website Fall 2017."
+                                     title="Picture of CS Club's Hackathon Website Fall 2017." />
+                                <a class="project-links" title="Website" target="_blank" href="https://hopper.csustan.edu/~ssuarez/cs-club-hackathon/index.html"><i class="fas fa-globe"></i></a>
+                                <a class="project-links" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS-Club-Hackathon"><i class="fab fa-github"></i></a>
                             </li>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                                        <img class="img-responsive project-thumbnail" src="media/images/LibraryDatabase.PNG"
-                                             alt="Picture of a library database query page."
-                                             title="Picture of a library database query page." />
-                                        <a target="_blank" href="https://github.com/Ssuarez0/CS4250-Library-Database"><i class="fab fa-github"></i></a>
+                                <img class="img-responsive project-thumbnail" src="media/images/LibraryDatabase.PNG"
+                                     alt="Picture of a library database query page."
+                                     title="Picture of a library database query page." />
+                                <a class="project-links" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4250-Library-Database"><i class="fab fa-github"></i></a>
                             </li>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                                        <img class="img-responsive project-thumbnail" src="media/images/BirdDatabase.PNG"
-                                             alt="Picture of a Stanislaus County Bird Encyclopedia Index."
-                                             title="Picture of a Stanislaus County Bird Encyclopedia Index." />
-                                        <a target="_blank" href="https://github.com/Ssuarez0/CS4950---Bird-Encyclopedia"><i class="fab fa-github"></i></a>
+                                <img class="img-responsive project-thumbnail" src="media/images/BirdDatabase.PNG"
+                                     alt="Picture of a Stanislaus County Bird Encyclopedia Index."
+                                     title="Picture of a Stanislaus County Bird Encyclopedia Index." />
+                                <a class="project-links" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4950---Bird-Encyclopedia"><i class="fab fa-github"></i></a>
                             </li>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                                        <img class="img-responsive project-thumbnail" src="media/images/BeePesticideModel.PNG"
-                                             alt="Picture of a bee and pesticide simulation."
-                                             title="Picture of a bee and pesticide simulation." />
-                                        <a target="_blank" href="https://github.com/Ssuarez0/CS3200-Bee-Pesticide-Simulation"><i class="fab fa-github"></i></a>
+                                <img class="img-responsive project-thumbnail" src="media/images/BeePesticideModel.PNG"
+                                     alt="Picture of a bee and pesticide simulation."
+                                     title="Picture of a bee and pesticide simulation." />
+                                <a class="project-links" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS3200-Bee-Pesticide-Simulation"><i class="fab fa-github"></i></a>
                             </li>
                             <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                                        <img class="img-responsive project-thumbnail" src="media/images/BattleArenaSample.PNG"
-                                             alt="Picture of a Windows Console running an RPG battle arena."
-                                             title="Picture of a Windows Console running an RPG battle arena." />
-                                    <a target="_blank" href="https://github.com/Ssuarez0/CS4480---Battle-Arena-AI"><i class="fab fa-github"></i></a>
+                                <img class="img-responsive project-thumbnail" src="media/images/BattleArenaSample.PNG"
+                                     alt="Picture of a Windows Console running an RPG battle arena."
+                                     title="Picture of a Windows Console running an RPG battle arena." />
+                                <a class="project-links" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4480---Battle-Arena-AI"><i class="fab fa-github"></i></a>
                             </li>
                         </ul>
                     </div>
                 </section>
-                <div id="contact" class="col-xs-12 text-center">
-                    <h3>CONTACT</h3>
-                    <hr class="section-divider" />
-                </div>
+
+            </div>
+            <div id="contact" class="col-xs-12 text-center contact-details">
+                <h3>CONTACT ME</h3>
+                <hr class="section-divider" />
+                <a href="mailto:ssuarez@2011.nhi.edu" target="_blank" title="Stefan's Email">
+                    <i class="fas fa-envelope social-media-links"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/ssuarez0" target="_blank" title="Stefan's LinkedIn">
+                    <i class="fab fa-linkedin social-media-links"></i>
+                </a>
+                <a href="https://github.com/Ssuarez0" target="_blank" title="Stefan's Github">
+                    <i class="fab fa-github-square social-media-links"></i>
+                </a>
             </div>
         </main>
+        <div class="mobile-home text-center">
+            <a href="#top" class="scrollable home-button">
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
     </body>
     </html>
 </DOCTYPE!>
