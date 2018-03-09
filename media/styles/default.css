@@ -8,9 +8,11 @@
     position: relative;
 }
 
+/* Required for scrollspy plugin to work.*/
 html {
     height: 100%;
 }
+/* Don't touch. */
 
 blockquote {
     border: none;
@@ -53,8 +55,7 @@ footer.block-citation {
 
 .enclosed-anchor {
     color: white;
-    text-shadow:
-     1px 1px 0 #000;
+    font-weight: 900;
 }
 
 .enclosed-anchor:hover {
@@ -187,4 +188,9 @@ footer.block-citation {
     .mobile-home {
         display: none;
     }
+}
+
+.nav-point {
+    position: relative;
+    top: -50px;
 }
