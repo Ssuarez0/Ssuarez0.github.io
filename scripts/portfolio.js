@@ -6,4 +6,8 @@
         /* Both html and body necessary to accomodate all browsers. */
         $('html, body').stop().animate({ scrollTop: $($elementId).offset().top }, 1400);
     });
+
+    $('#portfolio-navigation a').click(function (e) {
+        $('#portfolio-navigation').collapse('hide');
+    });
 });
