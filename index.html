@@ -1,5 +1,6 @@
 ﻿<DOCTYPE! HTML>
     <html>
+
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,9 +11,14 @@
         <script type="text/javascript" src="scripts/dist/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="media/styles/dist/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="media/styles/dist/fontawesome-all.min.js"></script>
+        <script src="https://unpkg.com/react@16/umd/react.production.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.js" crossorigin></script>
+
         <script type="text/javascript" src="scripts/portfolio.js"></script>
 
+
     </head>
+
     <body data-spy="scroll" data-target="#navheader" data-offset="0">
         <a id="top" name="home"></a>
         <nav id="navheader" class="navbar navbar-inverse navbar-fixed-top">
@@ -37,7 +43,8 @@
         </nav>
         <div class="container" id="content">
             <div class="col-xs-12 primary-logo">
-                <img src="media/images/wordcloud2.PNG" id="wordcloud" class="img-responsive img-circle center-block" alt="skill word cloud" />
+                <img src="media/images/wordcloud2.PNG" id="wordcloud" class="img-responsive img-circle center-block" alt="skill word cloud"
+                />
             </div>
             <div id="about" class="col-xs-12 text-center">
                 <div id="about-nav" class="nav-point"></div>
@@ -60,21 +67,22 @@
                             </footer>
                         </div>
                     </blockquote>
-                    I am a Full-Stack and Software Developer with hands-on experience and an ever-expanding skillset.
-                    Throughout my schooling and experience in the CS field, I have proven myself as being both punctual to a fault as well as a
-                    quick learner. Additionally, I have a proven track record on all previous projects that I have contributed to: showing myself to be equally adept
-                    and resourceful in interpretation and implementation alike. If you wish to examine some of those previous projects, my portfolio is below along
-                    with links to various repositories and websites that I have worked on; and, if you wish to contact me for an interview or even just to network, I
-                    can easily be reached by any of the methods listed in my <a class="enclosed-anchor scrollable" href="#contact-nav">contact</a> section for this page.
-                    Thank you for reading, and have a pleasant day.
+                    I am a Full-Stack and Software Developer with hands-on experience and an ever-expanding skillset. Throughout my schooling
+                    and experience in the CS field, I have proven myself as being both punctual to a fault as well as a quick
+                    learner. Additionally, I have a proven track record on all previous projects that I have contributed
+                    to: showing myself to be equally adept and resourceful in interpretation and implementation alike. If
+                    you wish to examine some of those previous projects, my portfolio is below along with links to various
+                    repositories and websites that I have worked on; and, if you wish to contact me for an interview or even
+                    just to network, I can easily be reached by any of the methods listed in my <a class="enclosed-anchor scrollable"
+                        href="#contact-nav">contact</a> section for this page. Thank you for reading, and have a pleasant day.
                     <header class="text-center">
                         <h3 class="subsection-header"> Skills </h3>
                     </header>
                     <div class="text-center skills-list">
                         <h4>
-                            Python &middot; C++ &middot; PHP &middot; Django &middot; Javascript &middot; jQuery &middot; CSS &middot; HTML5
-                            &middot; Bootstrap &middot; Git &middot; MySQL &middot; PostgreSQL &middot; SQlite3 &middot; Windows &middot; Mac &middot; Linux
-                            &middot; C# &middot; WPF &middot; React.js
+                            Python &middot; C++ &middot; PHP &middot; Django &middot; Javascript &middot; jQuery &middot; CSS &middot; HTML5 &middot;
+                            Bootstrap &middot; Git &middot; MySQL &middot; PostgreSQL &middot; SQlite3 &middot; Windows &middot;
+                            Mac &middot; Linux &middot; C# &middot; WPF &middot; React.js
                         </h4>
                     </div>
                 </div>
@@ -82,69 +90,71 @@
             <div id="portfolio" class="col-xs-12 text-center">
                 <div id="portfolio-nav" class="nav-point"></div>
                 <h3>PORTFOLIO</h3>
-                <hr class="section-divider" />
-                All projects featured here, with the exception of Revaliir, have their code hosted on public repositories on my Github. Click the
-                <i class="fab fa-github"></i> under a project thumbnail to go to its respective github or the <i class="fas fa-globe"></i> to visit
-                a live website hosting them!
-                <ul>
-                    <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                        <img class="img-responsive project-thumbnail" src="media/images/Revaliir.PNG"
-                             alt="Picture of Revaliir's portal page."
-                             title="Picture of Revaliir's portal page." />
-                        <div class="project-links">
-                            <a class="project-link" title="Website" target="_blank" href="https://revaliir.net/"><i class="fas fa-globe"></i></a>
-                        </div>
-                    </li>
-                    <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                        <img class="img-responsive project-thumbnail" src="media/images/spanishFrequency.PNG"
-                             alt="Picture of a Spanish Natural Language Analyzer."
-                             title="Picture of a Spanish Natural Language Analyzer." />
-                        <div class="project-links">
-                            <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/spanish-nl-analyzer"><i class="fab fa-github"></i></a>
-                        </div>
-                    </li>
-                    <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                        <img class="img-responsive project-thumbnail" src="media/images/CS-Club-Hackathon.PNG"
-                             alt="Picture of CS Club's Hackathon Website Fall 2017."
-                             title="Picture of CS Club's Hackathon Website Fall 2017." />
-                        <div class="project-links">
-                            <a class="project-link" title="Website" target="_blank" href="https://hopper.csustan.edu/~ssuarez/cs-club-hackathon/index.html"><i class="fas fa-globe"></i></a>
-                            <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS-Club-Hackathon"><i class="fab fa-github"></i></a>
-                        </div>
-                    </li>
-                    <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                        <img class="img-responsive project-thumbnail" src="media/images/LibraryDatabase.PNG"
-                             alt="Picture of a library database query page."
-                             title="Picture of a library database query page." />
-                        <div class="project-links">
-                            <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4250-Library-Database"><i class="fab fa-github"></i></a>
-                        </div>
-                    </li>
-                    <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                        <img class="img-responsive project-thumbnail" src="media/images/BirdDatabase.PNG"
-                             alt="Picture of a Stanislaus County Bird Encyclopedia Index."
-                             title="Picture of a Stanislaus County Bird Encyclopedia Index." />
-                        <div class="project-links">
-                            <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4950---Bird-Encyclopedia"><i class="fab fa-github"></i></a>
-                        </div>
-                    </li>
-                    <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                        <img class="img-responsive project-thumbnail" src="media/images/BeePesticideModel.PNG"
-                             alt="Picture of a bee and pesticide simulation."
-                             title="Picture of a bee and pesticide simulation." />
-                        <div class="project-links">
-                            <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS3200-Bee-Pesticide-Simulation"><i class="fab fa-github"></i></a>
-                        </div>
-                    </li>
-                    <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
-                        <img class="img-responsive project-thumbnail" src="media/images/BattleArenaSample.PNG"
-                             alt="Picture of a Windows Console running an RPG battle arena."
-                             title="Picture of a Windows Console running an RPG battle arena." />
-                        <div class="project-links">
-                            <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4480---Battle-Arena-AI"><i class="fab fa-github"></i></a>
-                        </div>
-                    </li>
-                </ul>
+                <hr class="section-divider" /> All projects featured here, with the exception of Revaliir, have their code
+                hosted on public repositories on my Github. Click the
+                <i class="fab fa-github"></i> under a project thumbnail to go to its respective github or the <i class="fas fa-globe"></i>
+                to visit a live website hosting them!
+                <div id="projects">
+                    <ul>
+                        <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
+                            <img class="img-responsive project-thumbnail" src="media/images/Revaliir.PNG" alt="Picture of Revaliir's portal page." title="Picture of Revaliir's portal page."
+                            />
+                            <div class="project-links">
+                                <a class="project-link" title="Website" target="_blank" href="https://revaliir.net/"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </li>
+                        <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
+                            <img class="img-responsive project-thumbnail" src="media/images/spanishFrequency.PNG" alt="Picture of a Spanish Natural Language Analyzer."
+                                title="Picture of a Spanish Natural Language Analyzer." />
+                            <div class="project-links">
+                                <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/spanish-nl-analyzer"><i
+                                        class="fab fa-github"></i></a>
+                            </div>
+                        </li>
+                        <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
+                            <img class="img-responsive project-thumbnail" src="media/images/CS-Club-Hackathon.PNG" alt="Picture of CS Club's Hackathon Website Fall 2017."
+                                title="Picture of CS Club's Hackathon Website Fall 2017." />
+                            <div class="project-links">
+                                <a class="project-link" title="Website" target="_blank" href="https://hopper.csustan.edu/~ssuarez/cs-club-hackathon/index.html"><i
+                                        class="fas fa-globe"></i></a>
+                                <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS-Club-Hackathon"><i
+                                        class="fab fa-github"></i></a>
+                            </div>
+                        </li>
+                        <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
+                            <img class="img-responsive project-thumbnail" src="media/images/LibraryDatabase.PNG" alt="Picture of a library database query page."
+                                title="Picture of a library database query page." />
+                            <div class="project-links">
+                                <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4250-Library-Database"><i
+                                        class="fab fa-github"></i></a>
+                            </div>
+                        </li>
+                        <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
+                            <img class="img-responsive project-thumbnail" src="media/images/BirdDatabase.PNG" alt="Picture of a Stanislaus County Bird Encyclopedia Index."
+                                title="Picture of a Stanislaus County Bird Encyclopedia Index." />
+                            <div class="project-links">
+                                <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4950---Bird-Encyclopedia"><i
+                                        class="fab fa-github"></i></a>
+                            </div>
+                        </li>
+                        <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
+                            <img class="img-responsive project-thumbnail" src="media/images/BeePesticideModel.PNG" alt="Picture of a bee and pesticide simulation."
+                                title="Picture of a bee and pesticide simulation." />
+                            <div class="project-links">
+                                <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS3200-Bee-Pesticide-Simulation"><i
+                                        class="fab fa-github"></i></a>
+                            </div>
+                        </li>
+                        <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
+                            <img class="img-responsive project-thumbnail" src="media/images/BattleArenaSample.PNG" alt="Picture of a Windows Console running an RPG battle arena."
+                                title="Picture of a Windows Console running an RPG battle arena." />
+                            <div class="project-links">
+                                <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/CS4480---Battle-Arena-AI"><i
+                                        class="fab fa-github"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div id="contact" class="col-xs-12 text-center contact-details">
@@ -167,5 +177,6 @@
             </a>
         </div>
     </body>
-</html>
+
+    </html>
 </DOCTYPE!>

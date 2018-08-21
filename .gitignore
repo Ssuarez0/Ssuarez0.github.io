@@ -1,2 +1,2 @@
-# ignore visual studio stuff
-website.publishproj
+# ignore nodemodules
+node_modules
