@@ -1,0 +1,196 @@
+﻿body {
+    background: url(../../images/office2.jpg) no-repeat center center fixed;
+    background-color: #05241a;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+}
+
+/* Required for scrollspy plugin to work.*/
+html {
+    height: 100%;
+}
+/* Don't touch. */
+
+blockquote {
+    border: none;
+    font-size:smaller;
+    font-style:italic;
+    padding: 0px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+footer.block-citation {
+    color: white;
+}
+
+#content {
+    background-color: #30664f;
+    color: white;
+    margin-top: 0px;
+    padding: 0px;
+    position: relative;
+}
+
+#navheader {
+    margin-bottom: 0px;
+}
+
+#wordcloud {
+    margin-top: 20px;
+}
+
+.section-divider {
+    border-top: 4px solid;
+    border-color: white;
+    width: 40%;
+    text-align: center;
+}
+
+.enclosed-anchor {
+    color: white;
+    font-weight: 900;
+}
+
+.enclosed-anchor:hover {
+    color: white;
+}
+
+.profile-image {
+    max-height: 300px;
+    margin-bottom: 20px;
+}
+
+/*mobile and tablet view
+    keyword only makes this ignored by old browsers
+*/
+@media only screen
+    and (max-device-width: 991px) {
+        .project-panel {
+            background-color: white;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 1px;
+            border: 1px solid black;
+            border-radius: 2px;
+            box-shadow: #000000 1px 1px;
+        }
+
+        .project-thumbnail {
+            height: auto;
+            width: 100%;
+            border-bottom: 2px solid black;
+        }
+}
+
+/*desktop view
+    lack of keyword only means older browsers will simply render this as the default
+    phones don't typically use browsers that old, so this is safe as the default
+*/
+@media screen
+    and (min-device-width: 992px){
+        .project-panel {
+            background-color: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 4.166666667%;
+            margin-right: 4.166666667%;
+            padding: 1px;
+            border: 1px solid black;
+            border-radius: 2px;
+            box-shadow: #000000 1px 1px;
+        }
+
+        .project-thumbnail {
+            height: 300px;
+            width: 100%;
+            border-bottom: 2px solid black;
+        }
+
+}
+
+
+
+
+.skills-list h3 {
+    margin: 0px;
+}
+
+.primary-logo {
+    background-color: #05241a;
+    padding: 60px 0px 30px 0px;
+}
+
+.col-xs-offset-05 {
+    margin-left: 4.16666667%;
+}
+
+.project-links {
+    padding: 5px 0px 5px 0px;
+}
+
+.project-link {
+    margin: 10px;
+    font-size: large;
+    color: #30664f;
+}
+
+.social-media-links {
+    color: white;
+    font-size: 3em;
+    margin: 0px 15px 15px 15px;
+}
+
+.contact-details {
+    background-color: #05241a;
+    padding: 10px 0px 30px 0px;
+    color: white;
+}
+
+/*mobile and tablet view
+    keyword only makes this ignored by old browsers
+*/
+@media only screen and (max-device-width: 767px) {
+    .home-button {
+        color: white;
+        font-size: 2em;
+        font-weight: 900;
+        padding: 5px;
+        border-radius: 50%;
+        border: 1px solid white;
+        background-color: #05241a;
+    }
+
+    .home-button:hover {
+        color: white;
+        background-color: #30664f;
+    }
+
+    .mobile-home {
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
+    }
+}
+
+/*desktop view
+    lack of keyword only means older browsers will simply render this as the default
+    phones don't typically use browsers that old, so this is safe as the default
+*/
+@media screen and (min-device-width: 767px) {
+    /*hides the button div for desktop*/
+    .mobile-home {
+        display: none;
+    }
+}
+
+.nav-point {
+    position: relative;
+    top: -50px;
+}

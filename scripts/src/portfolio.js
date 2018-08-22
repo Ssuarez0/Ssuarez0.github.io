@@ -1,3 +1,5 @@
+'use strict';
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -8,62 +10,62 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var currentProjects = [{
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }];
@@ -107,7 +109,7 @@ var ProjectsSlideshow = function (_React$Component) {
         key: "componentDidMount",
         value: function componentDidMount() {
             //Populate the projects state
-            this.setState({ slides: currentProjects });
+            this.setState(Object.assign({}, this.state, { slides: currentProjects }));
         }
     }, {
         key: "handleSlideSelect",
@@ -124,7 +126,7 @@ var ProjectsSlideshow = function (_React$Component) {
         key: "render",
         value: function render() {
             var slides = this.state.slides.map(function (slide) {
-                React.createElement(Slide, {
+                return React.createElement(Slide, {
                     project: slide
                 });
             });
@@ -132,6 +134,7 @@ var ProjectsSlideshow = function (_React$Component) {
             return React.createElement(
                 "div",
                 null,
+                "This is the current slideshow",
                 slides
             );
         }
@@ -152,15 +155,20 @@ var Slide = function (_React$Component2) {
     _createClass(Slide, [{
         key: "render",
         value: function render() {
-            var projectDisplay = this.props.project.hasOwnProperty("websiteLink") ? React.createElement(
+            var projectDisplay = this.props.project.websiteLink.length > 0 ? React.createElement(
                 "div",
                 null,
-                React.createElement("iframe", null)
+                React.createElement(
+                    "iframe",
+                    null,
+                    "This is an iframe."
+                )
             ) : React.createElement(
                 "div",
                 null,
-                React.createElement("img", { src: slide.projectImg })
+                React.createElement("img", { src: this.props.project.projectImg })
             );
+
             return React.createElement(
                 "div",
                 null,
@@ -172,4 +180,4 @@ var Slide = function (_React$Component2) {
     return Slide;
 }(React.Component);
 
-ReactDOM.render(React.createElement(ProjectsSlideshow, null), document.getElementById("projects"));
+ReactDOM.render(React.createElement(ProjectsSlideshow, null), document.getElementById('projects'));

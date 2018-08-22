@@ -11,20 +11,11 @@
         <script type="text/javascript" src="scripts/dist/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="media/styles/dist/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="media/styles/dist/fontawesome-all.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-        <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-        <script>
-            //Fallback for CDN of React
-            if (typeof React == 'undefined') {
-                document.write(unescape("%3Cscript src='../dist/react.production.min.js' type='text/javascript'%3E%3C/script%3E"));
-            }
-            if (typeof ReactDOM == 'undefined') {
-                document.write(unescape("%3Cscript src='../dist/react-dom.production.min.js' type='text/javascript'%3E%3C/script%3E"));
-            }
-        </script>
-        <!--My css-->
+        <script src="https://unpkg.com/react@16/umd/react.production.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.js" crossorigin></script>
+        <!--My css and scripts-->
         <link rel="stylesheet" href="media/styles/css/default.css" />
-        
+        <script type="text/javascript" src="scripts/portfolio.js"></script>
     </head>
 
     <body data-spy="scroll" data-target="#navheader" data-offset="0">
@@ -184,7 +175,6 @@
                 <i class="fas fa-home"></i>
             </a>
         </div>
-        <script type="text/javascript" src="scripts/src/portfolio.js"></script>
     </body>
 
     </html>

@@ -1,72 +1,74 @@
-﻿const currentProjects = [
+﻿'use strict';
+
+const currentProjects = [
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     }, {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
         name: "Test project",
-        projectImg: "./media/images/",
+        projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     }
@@ -102,7 +104,7 @@ class ProjectsSlideshow extends React.Component {
 
     componentDidMount() {
         //Populate the projects state
-        this.setState({slides: currentProjects});
+        this.setState(Object.assign({}, this.state, {slides: currentProjects}));
     }
 
     handleSlideSelect() {
@@ -116,13 +118,16 @@ class ProjectsSlideshow extends React.Component {
 
     render() {
         const slides = this.state.slides.map(slide => {
-            <Slide
-                project={slide}
-            />
+            return(
+                <Slide
+                    project={slide}
+                />
+            ); 
         });
 
         return (
             <div>
+                This is the current slideshow
                 {slides}
             </div>
         );
@@ -131,16 +136,18 @@ class ProjectsSlideshow extends React.Component {
 
 class Slide extends React.Component {
     render() {
-        const projectDisplay = this.props.project.hasOwnProperty("websiteLink") ? 
+        const projectDisplay = this.props.project.websiteLink.length > 0 ? 
             <div>
                 <iframe>
-
+                    This is an iframe.
                 </iframe>
             </div>
             :
             <div>
-                <img src={slide.projectImg}/>
-            </div>
+                <img src={this.props.project.projectImg}/>
+            </div>;
+
+
         return (
             <div>
                 {projectDisplay}
@@ -149,4 +156,4 @@ class Slide extends React.Component {
     }
 }
 
-ReactDOM.render(<ProjectsSlideshow/>, document.getElementById("projects"));
+ReactDOM.render(<ProjectsSlideshow/>, document.getElementById('projects'));
