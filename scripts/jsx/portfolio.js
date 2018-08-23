@@ -1,72 +1,85 @@
 ﻿'use strict';
 
+//react and projects
 const currentProjects = [
     {
+        key: 0,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
+        key: 1,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
+        key: 2,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     }, {
+        key: 3,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
+        key: 4,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
+        key: 5,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
+        key: 6,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
+        key: 7,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
+        key: 8,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
+        key: 9,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
+        key: 10,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
     {
+        key: 11,
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
@@ -74,28 +87,13 @@ const currentProjects = [
     }
 ]
 
-//jquery
-$(document).ready(function () {
-    $('a.scrollable').click(function (e) {
-        e.preventDefault();
-        var $anchorHref = $(this).attr('href');
-        $elementId = $($anchorHref);
-        /* Both html and body necessary to accomodate all browsers. */
-        $('html, body').stop().animate({ scrollTop: $($elementId).offset().top }, 1400);
-    });
-
-    $('#portfolio-navigation a').click(function (e) {
-        $('#portfolio-navigation').collapse('hide');
-    });
-});
-
-//react
 class ProjectsSlideshow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             slides: [],
-            currentSlide: 1
+            currentSlide: 1,
+            previousSlide: 1
         }
 
         this.handleSlideSelect = this.handleSlideSelect.bind(this);
@@ -104,11 +102,14 @@ class ProjectsSlideshow extends React.Component {
 
     componentDidMount() {
         //Populate the projects state
-        this.setState(Object.assign({}, this.state, {slides: currentProjects}));
+        this.setState(Object.assign({}, this.state, { slides: currentProjects }));
     }
 
-    handleSlideSelect() {
+    handleSlideSelect(nextSlide) {
         //Adjust current slide by clicking on the previews
+        if (this.state.slides.length >= nextSlide && nextSlide > 0) {
+            this.setState(Object.assign({}, this.state, { currentSlide: nextSlide, previousSlide: this.state.currentSlide }));
+        }
     }
 
     handleAnimatedTransition() {
@@ -117,17 +118,20 @@ class ProjectsSlideshow extends React.Component {
     }
 
     render() {
-        const slides = this.state.slides.map(slide => {
-            return(
+        const slides = this.state.slides.map((slide, index) => {
+            return (
                 <Slide
+                    key={index + 1}
                     project={slide}
+                    currentSlide={index + 1 === this.state.currentSlide ? true : false}
+                    previousSlide={index + 1 === this.state.previousSlide ? true : false}
                 />
-            ); 
+            );
         });
 
         return (
-            <div>
-                This is the current slideshow
+            <div className="col-xs-12 slideshow">
+                <button onClick={() => this.handleSlideSelect(this.state.currentSlide + 1)}>Test</button>
                 {slides}
             </div>
         );
@@ -136,24 +140,43 @@ class ProjectsSlideshow extends React.Component {
 
 class Slide extends React.Component {
     render() {
-        const projectDisplay = this.props.project.websiteLink.length > 0 ? 
-            <div>
-                <iframe>
-                    This is an iframe.
-                </iframe>
-            </div>
-            :
-            <div>
-                <img src={this.props.project.projectImg}/>
-            </div>;
+        let projectDisplay;
+        if (this.props.project.websiteLink.length > 0) {
+            //If referencing a live website, use the iframe to image trick.
+            if (this.props.currentSlide) {
+                //Current slide? Display with transition.
+                projectDisplay = <iframe> This is an iframe. </iframe>;
+            } else if (this.props.previousSlide) {
+                //Previous slide? Don't collapse just yet, but do push it to the back.
+                projectDisplay = <iframe> This is an iframe. </iframe>;
+            } else {
+                //Otherwise, hide.
+                projectDisplay = <iframe> This is an iframe. </iframe>;
+            }
 
+        } else {
+            //otherwise just use an image
+            if (this.props.currentSlide) {
+                //Current slide? Display.
+                projectDisplay = <img className="slide current-slide" src={this.props.project.projectImg} />;
+            } else if (this.props.previousSlide) {
+                //Previous slide? Don't collapse just yet, but do push it to the back.
+                projectDisplay = <img className="slide" src={this.props.project.projectImg} />;
+            } else {
+                //Otherwise, hide.
+                projectDisplay = <img className="slide" src={this.props.project.projectImg} />;
+            }
+        }
 
         return (
             <div>
                 {projectDisplay}
-            </div>
+            </div>      
         );
     }
 }
 
-ReactDOM.render(<ProjectsSlideshow/>, document.getElementById('projects'));
+
+ReactDOM.render(<ProjectsSlideshow />, document.getElementById('projects'));
+
+
