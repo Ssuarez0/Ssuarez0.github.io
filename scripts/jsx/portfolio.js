@@ -7,7 +7,7 @@ const currentProjects = [
         name: "Test project",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
-        websiteLink: ""
+        websiteLink: "https://revaliir.net/index/"
     },
     {
         key: 1,
@@ -131,47 +131,25 @@ class ProjectsSlideshow extends React.Component {
 
         return (
             <div className="col-xs-12 slideshow">
-                <button onClick={() => this.handleSlideSelect(this.state.currentSlide + 1)}>Test</button>
-                {slides}
+                <div className="toolbar">
+                    <button onClick={() => this.handleSlideSelect(this.state.currentSlide + 1)}>Test</button>
+                </div>
+                <div className="slides">
+                    {slides}
+                </div>
             </div>
         );
     }
 }
 
 class Slide extends React.Component {
+
     render() {
-        let projectDisplay;
-        if (this.props.project.websiteLink.length > 0) {
-            //If referencing a live website, use the iframe to image trick.
-            if (this.props.currentSlide) {
-                //Current slide? Display with transition.
-                projectDisplay = <iframe> This is an iframe. </iframe>;
-            } else if (this.props.previousSlide) {
-                //Previous slide? Don't collapse just yet, but do push it to the back.
-                projectDisplay = <iframe> This is an iframe. </iframe>;
-            } else {
-                //Otherwise, hide.
-                projectDisplay = <iframe> This is an iframe. </iframe>;
-            }
-
-        } else {
-            //otherwise just use an image
-            if (this.props.currentSlide) {
-                //Current slide? Display.
-                projectDisplay = <img className="slide current-slide" src={this.props.project.projectImg} />;
-            } else if (this.props.previousSlide) {
-                //Previous slide? Don't collapse just yet, but do push it to the back.
-                projectDisplay = <img className="slide" src={this.props.project.projectImg} />;
-            } else {
-                //Otherwise, hide.
-                projectDisplay = <img className="slide" src={this.props.project.projectImg} />;
-            }
-        }
-
         return (
-            <div>
-                {projectDisplay}
-            </div>      
+
+            <div className={"slide " + (this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "")}>
+                <img src={this.props.project.projectImg} />
+            </div>
         );
     }
 }

@@ -15,7 +15,7 @@ var currentProjects = [{
     name: "Test project",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
-    websiteLink: ""
+    websiteLink: "https://revaliir.net/index/"
 }, {
     key: 1,
     name: "Test project",
@@ -141,13 +141,21 @@ var ProjectsSlideshow = function (_React$Component) {
                 "div",
                 { className: "col-xs-12 slideshow" },
                 React.createElement(
-                    "button",
-                    { onClick: function onClick() {
-                            return _this2.handleSlideSelect(_this2.state.currentSlide + 1);
-                        } },
-                    "Test"
+                    "div",
+                    { className: "toolbar" },
+                    React.createElement(
+                        "button",
+                        { onClick: function onClick() {
+                                return _this2.handleSlideSelect(_this2.state.currentSlide + 1);
+                            } },
+                        "Test"
+                    )
                 ),
-                slides
+                React.createElement(
+                    "div",
+                    { className: "slides" },
+                    slides
+                )
             );
         }
     }]);
@@ -167,49 +175,10 @@ var Slide = function (_React$Component2) {
     _createClass(Slide, [{
         key: "render",
         value: function render() {
-            var projectDisplay = void 0;
-            if (this.props.project.websiteLink.length > 0) {
-                //If referencing a live website, use the iframe to image trick.
-                if (this.props.currentSlide) {
-                    //Current slide? Display with transition.
-                    projectDisplay = React.createElement(
-                        "iframe",
-                        null,
-                        " This is an iframe. "
-                    );
-                } else if (this.props.previousSlide) {
-                    //Previous slide? Don't collapse just yet, but do push it to the back.
-                    projectDisplay = React.createElement(
-                        "iframe",
-                        null,
-                        " This is an iframe. "
-                    );
-                } else {
-                    //Otherwise, hide.
-                    projectDisplay = React.createElement(
-                        "iframe",
-                        null,
-                        " This is an iframe. "
-                    );
-                }
-            } else {
-                //otherwise just use an image
-                if (this.props.currentSlide) {
-                    //Current slide? Display.
-                    projectDisplay = React.createElement("img", { className: "slide current-slide", src: this.props.project.projectImg });
-                } else if (this.props.previousSlide) {
-                    //Previous slide? Don't collapse just yet, but do push it to the back.
-                    projectDisplay = React.createElement("img", { className: "slide", src: this.props.project.projectImg });
-                } else {
-                    //Otherwise, hide.
-                    projectDisplay = React.createElement("img", { className: "slide", src: this.props.project.projectImg });
-                }
-            }
-
             return React.createElement(
                 "div",
-                null,
-                projectDisplay
+                { className: "slide " + (this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "") },
+                React.createElement("img", { src: this.props.project.projectImg })
             );
         }
     }]);
