@@ -14,8 +14,21 @@
     animation: $props;
 }
 
-$slideshow-height: 500px;
+@mixin transform ($props...) {
+    -webkit-transform: $props;
+    -o-transform: $props;
+    -ms-transform: $props;
+    transform: $props;
+}
 
+@mixin displayFlex {
+    display: -webkit-flex;
+    display: flex;
+}
+
+$slideshow-height: 500px;
+$slides-height: $slideshow-height * 0.9;
+$slideshow-toolbar-height: $slideshow-height * 0.05;
 /***********************Original*****************/
 
 body {
@@ -29,12 +42,12 @@ body {
 }
 
 /* Required for scrollspy plugin to work.*/
+
 html {
     height: 100%;
 }
+
 /* Don't touch. */
-
-
 
 ul {
     list-style: none;
@@ -93,8 +106,8 @@ ul {
     padding-right: 4.16666667%;
     blockquote {
         border: none;
-        font-size:smaller;
-        font-style:italic;
+        font-size: smaller;
+        font-style: italic;
         padding: 0px;
         footer.block-citation {
             color: white;
@@ -125,6 +138,7 @@ ul {
 /*mobile and tablet view
     keyword only makes this ignored by old browsers
 */
+
 @media only screen and (max-device-width: 767px) {
     .home-button {
         color: white;
@@ -135,12 +149,10 @@ ul {
         border: 1px solid white;
         background-color: #05241a;
     }
-
     .home-button:hover {
         color: white;
         background-color: #30664f;
     }
-
     .mobile-home {
         position: fixed;
         bottom: 2%;
@@ -152,6 +164,7 @@ ul {
     lack of keyword only means older browsers will simply render this as the default
     phones don't typically use browsers that old, so this is safe as the default
 */
+
 @media screen and (min-device-width: 767px) {
     /*hides the button div for desktop*/
     .mobile-home {
@@ -166,72 +179,130 @@ ul {
 
 /***********************Sass*****************/
 
-
 .slideshow {
     height: $slideshow-height;
     margin: 20px 0px;
-    background: white;
-
-    .toolbar{
-        height: $slideshow-height * 0.05;
+    padding: 10px 0px;
+    background-color: #313131;
+    .toolbar {
+        height: $slideshow-toolbar-height;
         width: 100%;
     }
-
     .slides {
-        display: flex;
-        flex-flow: row;
+        display: block;
         overflow: hidden;
-        justify-content: center;
-        align-items: flex-start;
+        position: relative;
+        top: 0;
+        left: 0;
+        height: $slides-height;
+        width: 100%;
     }
 }
 
 .slide {
+    position: absolute;
+    left: 0;
+    top: 0;
     img {
         width: auto;
-        height: $slideshow-height * 0.95;
+        height: $slides-height;
         display: none;
     }
 }
 
-
-
-    //older browsers
-    .current-slide {
-        img {
-            display: inline-block;
-        }
-    }
-    //modern browsers
-    @media only screen {
-        .current-slide{
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            @include animation(expandSlide 2s ease-in forwards);
-            img {
-                flex-shrink: 0;
-            }
-        }
-    }
-
-
-
-@keyframes expandSlide {
-    0% {
-        height: 0px;
-        width: 10%;
-    }
-
-    50% {
-        height: $slideshow-height * 0.95;
-        width: 10%;
-    }
-    100% {
-        height: $slideshow-height * 0.95;
-        width: 100%;
+//older browsers
+.current-slide {
+    img {
+        display: block;
     }
 }
 
+//modern browsers
+@media only screen {
+    .previous-slide {
+        width: 100%;
+        height: auto;
+        background-color: #525252;
+        text-align: center;
+        img {
+            display: block;
+            margin: auto;
+            z-index: 1;
+        }
+    }
+    .current-slide {
+        @include displayFlex();
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #525252;
+        @include animation(transitionSlide 2s ease-in forwards);
+        img {
+            @include animation(maintainImageAspect 2s ease-in forwards);
+            flex-shrink: 0;
+            display: block;
+            z-index: 2;
+        }
+    }
+}
+
+@keyframes transitionSlide {
+    0% {
+        @include transform(rotate(-60deg) scale(5, 5));
+        height: 0px;
+        width: 1%;
+        left: 50%;
+    }
+    35% {
+        height: $slides-height;
+        width: 1%;
+        left: 50%;
+    }
+    99% {
+        height: $slides-height;
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        height: $slides-height;
+        width: 100%;
+        left: 0;
+        @include transform(rotate(0) scale(1, 1));
+    }
+}
+
+@keyframes maintainImageAspect {
+    0% {
+        @include transform(rotate(60deg) scale(0.2, 0.2));
+    }
+    100% {
+        //counter rotate image against animation
+        @include transform(rotate(0deg) scale(1, 1));
+    }
+}
+
+@keyframes transitionDescription {
+    0% {
+        @include transform(rotate(-60deg) scale(5, 5));
+        height: 0px;
+        width: 1%;
+        left: 50%;
+    }
+    35% {
+        height: $slides-height;
+        width: 1%;
+        left: 50%;
+    }
+    99% {
+        height: $slides-height;
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        height: $slides-height;
+        width: 100%;
+        left: 0;
+        @include transform(rotate(0) scale(1, 1));
+    }
+}

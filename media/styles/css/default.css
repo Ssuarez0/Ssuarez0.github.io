@@ -145,59 +145,148 @@ ul {
 .slideshow {
   height: 500px;
   margin: 20px 0px;
-  background: white;
+  padding: 10px 0px;
+  background-color: #313131;
 }
 .slideshow .toolbar {
   height: 25px;
   width: 100%;
 }
 .slideshow .slides {
-  display: flex;
-  flex-flow: row;
+  display: block;
   overflow: hidden;
-  justify-content: center;
-  align-items: flex-start;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 450px;
+  width: 100%;
 }
 
+.slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 .slide img {
   width: auto;
-  height: 475px;
+  height: 450px;
   display: none;
 }
 
 .current-slide img {
-  display: inline-block;
+  display: block;
 }
 
 @media only screen {
+  .previous-slide {
+    width: 100%;
+    height: auto;
+    background-color: #525252;
+    text-align: center;
+  }
+  .previous-slide img {
+    display: block;
+    margin: auto;
+    z-index: 1;
+  }
+
   .current-slide {
+    display: -webkit-flex;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    -webkit-animation: expandSlide 2s ease-in forwards;
-    -moz-animation: expandSlide 2s ease-in forwards;
-    -o-animation: expandSlide 2s ease-in forwards;
-    -ms-animation: expandSlide 2s ease-in forwards;
-    animation: expandSlide 2s ease-in forwards;
+    background-color: #525252;
+    -webkit-animation: transitionSlide 2s ease-in forwards;
+    -moz-animation: transitionSlide 2s ease-in forwards;
+    -o-animation: transitionSlide 2s ease-in forwards;
+    -ms-animation: transitionSlide 2s ease-in forwards;
+    animation: transitionSlide 2s ease-in forwards;
   }
   .current-slide img {
+    -webkit-animation: maintainImageAspect 2s ease-in forwards;
+    -moz-animation: maintainImageAspect 2s ease-in forwards;
+    -o-animation: maintainImageAspect 2s ease-in forwards;
+    -ms-animation: maintainImageAspect 2s ease-in forwards;
+    animation: maintainImageAspect 2s ease-in forwards;
     flex-shrink: 0;
+    display: block;
+    z-index: 2;
   }
 }
-@keyframes expandSlide {
+@keyframes transitionSlide {
   0% {
+    -webkit-transform: rotate(-60deg) scale(5, 5);
+    -o-transform: rotate(-60deg) scale(5, 5);
+    -ms-transform: rotate(-60deg) scale(5, 5);
+    transform: rotate(-60deg) scale(5, 5);
     height: 0px;
-    width: 10%;
+    width: 1%;
+    left: 50%;
   }
-  50% {
-    height: 475px;
-    width: 10%;
+  35% {
+    height: 450px;
+    width: 1%;
+    left: 50%;
+  }
+  99% {
+    height: 450px;
+    width: 100%;
+    left: 0;
   }
   100% {
-    height: 475px;
+    height: 450px;
     width: 100%;
+    left: 0;
+    -webkit-transform: rotate(0) scale(1, 1);
+    -o-transform: rotate(0) scale(1, 1);
+    -ms-transform: rotate(0) scale(1, 1);
+    transform: rotate(0) scale(1, 1);
+  }
+}
+@keyframes maintainImageAspect {
+  0% {
+    -webkit-transform: rotate(60deg) scale(0.2, 0.2);
+    -o-transform: rotate(60deg) scale(0.2, 0.2);
+    -ms-transform: rotate(60deg) scale(0.2, 0.2);
+    transform: rotate(60deg) scale(0.2, 0.2);
+  }
+  100% {
+    -webkit-transform: rotate(0deg) scale(1, 1);
+    -o-transform: rotate(0deg) scale(1, 1);
+    -ms-transform: rotate(0deg) scale(1, 1);
+    transform: rotate(0deg) scale(1, 1);
+  }
+}
+@keyframes transitionDescription {
+  0% {
+    -webkit-transform: rotate(-60deg) scale(5, 5);
+    -o-transform: rotate(-60deg) scale(5, 5);
+    -ms-transform: rotate(-60deg) scale(5, 5);
+    transform: rotate(-60deg) scale(5, 5);
+    height: 0px;
+    width: 1%;
+    left: 50%;
+  }
+  35% {
+    height: 450px;
+    width: 1%;
+    left: 50%;
+  }
+  99% {
+    height: 450px;
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    height: 450px;
+    width: 100%;
+    left: 0;
+    -webkit-transform: rotate(0) scale(1, 1);
+    -o-transform: rotate(0) scale(1, 1);
+    -ms-transform: rotate(0) scale(1, 1);
+    transform: rotate(0) scale(1, 1);
   }
 }
 
