@@ -93,7 +93,7 @@ class ProjectsSlideshow extends React.Component {
         this.state = {
             slides: [],
             currentSlide: 1,
-            previousSlide: 1
+            previousSlide: 0
         }
 
         this.handleSlideSelect = this.handleSlideSelect.bind(this);
@@ -125,6 +125,7 @@ class ProjectsSlideshow extends React.Component {
                     project={slide}
                     currentSlide={index + 1 === this.state.currentSlide ? true : false}
                     previousSlide={index + 1 === this.state.previousSlide ? true : false}
+                    justInitialized={this.state.previousSlide === 0 ? true: false}
                 />
             );
         });
@@ -147,7 +148,7 @@ class Slide extends React.Component {
     render() {
         return (
 
-            <div className={"slide " + (this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "")}>
+            <div className={"slide " + (this.props.justInitialized && this.props.currentSlide ? "initial-slide" : this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "")}>
                 <img src={this.props.project.projectImg} />
             </div>
         );

@@ -105,6 +105,13 @@ ul {
     keyword only makes this ignored by old browsers
 */
 @media only screen and (max-device-width: 767px) {
+  .mobile-home {
+    position: fixed;
+    z-index: 500;
+    bottom: 2%;
+    right: 2%;
+  }
+
   .home-button {
     color: white;
     font-size: 2em;
@@ -118,12 +125,6 @@ ul {
   .home-button:hover {
     color: white;
     background-color: #30664f;
-  }
-
-  .mobile-home {
-    position: fixed;
-    bottom: 2%;
-    right: 2%;
   }
 }
 /*desktop view
@@ -144,16 +145,26 @@ ul {
 /***********************Sass*****************/
 .slideshow {
   height: 500px;
-  margin: 20px 0px;
+  margin: 20px 1.5%;
   padding: 10px 0px;
   background-color: #313131;
+  width: 97%;
+  /* .slides {
+      display: block;
+      overflow: hidden;
+      position: relative;
+      top: 0;
+      left: 0;
+      height: $slides-height;
+      width: 100%;
+  } */
 }
 .slideshow .toolbar {
   height: 25px;
   width: 100%;
 }
 .slideshow .slides {
-  display: block;
+  display: flex;
   overflow: hidden;
   position: relative;
   top: 0;
@@ -173,20 +184,45 @@ ul {
   display: none;
 }
 
+.current-slide {
+  width: 100%;
+  height: auto;
+  background-color: #525252;
+}
 .current-slide img {
   display: block;
+  margin: auto;
 }
 
 @media only screen {
-  .previous-slide {
-    width: 100%;
-    height: auto;
-    background-color: #525252;
-    text-align: center;
+  /*
+  .initial-slide {
+      width: 100%;
+      height: auto;
+      background-color: #525252;
+      img {
+          display: block;
+          margin: auto;
+      }
   }
-  .previous-slide img {
+  */
+  .initial-slide, .previous-slide {
+    display: -webkit-flex;
+    display: flex;
+    height: 450px;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #525252;
+  }
+  .initial-slide img, .previous-slide img {
+    flex-shrink: 0;
     display: block;
-    margin: auto;
+  }
+
+  .previous-slide {
     z-index: 1;
   }
 
@@ -198,21 +234,21 @@ ul {
     align-items: center;
     overflow: hidden;
     background-color: #525252;
-    -webkit-animation: transitionSlide 2s ease-in forwards;
-    -moz-animation: transitionSlide 2s ease-in forwards;
-    -o-animation: transitionSlide 2s ease-in forwards;
-    -ms-animation: transitionSlide 2s ease-in forwards;
-    animation: transitionSlide 2s ease-in forwards;
+    z-index: 2;
+    -webkit-animation: transitionSlide 1.75s ease-in forwards;
+    -moz-animation: transitionSlide 1.75s ease-in forwards;
+    -o-animation: transitionSlide 1.75s ease-in forwards;
+    -ms-animation: transitionSlide 1.75s ease-in forwards;
+    animation: transitionSlide 1.75s ease-in forwards;
   }
   .current-slide img {
-    -webkit-animation: maintainImageAspect 2s ease-in forwards;
-    -moz-animation: maintainImageAspect 2s ease-in forwards;
-    -o-animation: maintainImageAspect 2s ease-in forwards;
-    -ms-animation: maintainImageAspect 2s ease-in forwards;
-    animation: maintainImageAspect 2s ease-in forwards;
+    -webkit-animation: maintainImageAspect 1.75s ease-in forwards;
+    -moz-animation: maintainImageAspect 1.75s ease-in forwards;
+    -o-animation: maintainImageAspect 1.75s ease-in forwards;
+    -ms-animation: maintainImageAspect 1.75s ease-in forwards;
+    animation: maintainImageAspect 1.75s ease-in forwards;
     flex-shrink: 0;
     display: block;
-    z-index: 2;
   }
 }
 @keyframes transitionSlide {

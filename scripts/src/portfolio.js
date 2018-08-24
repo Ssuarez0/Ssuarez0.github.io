@@ -95,7 +95,7 @@ var ProjectsSlideshow = function (_React$Component) {
         _this.state = {
             slides: [],
             currentSlide: 1,
-            previousSlide: 1
+            previousSlide: 0
         };
 
         _this.handleSlideSelect = _this.handleSlideSelect.bind(_this);
@@ -133,7 +133,8 @@ var ProjectsSlideshow = function (_React$Component) {
                     key: index + 1,
                     project: slide,
                     currentSlide: index + 1 === _this2.state.currentSlide ? true : false,
-                    previousSlide: index + 1 === _this2.state.previousSlide ? true : false
+                    previousSlide: index + 1 === _this2.state.previousSlide ? true : false,
+                    justInitialized: _this2.state.previousSlide === 0 ? true : false
                 });
             });
 
@@ -177,7 +178,7 @@ var Slide = function (_React$Component2) {
         value: function render() {
             return React.createElement(
                 "div",
-                { className: "slide " + (this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "") },
+                { className: "slide " + (this.props.justInitialized && this.props.currentSlide ? "initial-slide" : this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "") },
                 React.createElement("img", { src: this.props.project.projectImg })
             );
         }

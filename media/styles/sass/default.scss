@@ -140,6 +140,12 @@ ul {
 */
 
 @media only screen and (max-device-width: 767px) {
+    .mobile-home {
+        position: fixed;
+        z-index: 500;
+        bottom: 2%;
+        right: 2%;
+    }
     .home-button {
         color: white;
         font-size: 2em;
@@ -152,11 +158,6 @@ ul {
     .home-button:hover {
         color: white;
         background-color: #30664f;
-    }
-    .mobile-home {
-        position: fixed;
-        bottom: 2%;
-        right: 2%;
     }
 }
 
@@ -181,15 +182,25 @@ ul {
 
 .slideshow {
     height: $slideshow-height;
-    margin: 20px 0px;
+    margin: 20px 1.5%;
     padding: 10px 0px;
     background-color: #313131;
+    width: 97%;
     .toolbar {
         height: $slideshow-toolbar-height;
         width: 100%;
     }
-    .slides {
+    /* .slides {
         display: block;
+        overflow: hidden;
+        position: relative;
+        top: 0;
+        left: 0;
+        height: $slides-height;
+        width: 100%;
+    } */
+    .slides {
+        display: flex;
         overflow: hidden;
         position: relative;
         top: 0;
@@ -212,23 +223,45 @@ ul {
 
 //older browsers
 .current-slide {
+    width: 100%;
+    height: auto;
+    background-color: #525252;
     img {
         display: block;
+        margin: auto;
     }
 }
 
 //modern browsers
 @media only screen {
-    .previous-slide {
+    /*
+    .initial-slide {
         width: 100%;
         height: auto;
         background-color: #525252;
-        text-align: center;
         img {
             display: block;
             margin: auto;
-            z-index: 1;
         }
+    }
+    */
+    .initial-slide {
+        @include displayFlex();
+        height: $slides-height;
+        width: 100%;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #525252;
+        img {
+            flex-shrink: 0;
+            display: block;
+        }
+    }
+    .previous-slide {
+        @extend .initial-slide;
+        z-index: 1;
     }
     .current-slide {
         @include displayFlex();
@@ -237,12 +270,12 @@ ul {
         align-items: center;
         overflow: hidden;
         background-color: #525252;
-        @include animation(transitionSlide 2s ease-in forwards);
+        z-index: 2;
+        @include animation(transitionSlide 1.75s ease-in forwards);
         img {
-            @include animation(maintainImageAspect 2s ease-in forwards);
+            @include animation(maintainImageAspect 1.75s ease-in forwards);
             flex-shrink: 0;
             display: block;
-            z-index: 2;
         }
     }
 }
