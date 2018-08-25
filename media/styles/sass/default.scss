@@ -190,15 +190,6 @@ ul {
         height: $slideshow-toolbar-height;
         width: 100%;
     }
-    /* .slides {
-        display: block;
-        overflow: hidden;
-        position: relative;
-        top: 0;
-        left: 0;
-        height: $slides-height;
-        width: 100%;
-    } */
     .slides {
         display: flex;
         overflow: hidden;
@@ -232,19 +223,20 @@ ul {
     }
 }
 
+.initial-slide {
+    width: 100%;
+    height: auto;
+    background-color: #525252;
+    img {
+        display: block;
+        margin: auto;
+    }
+}
+
 //modern browsers
 @media only screen {
-    /*
-    .initial-slide {
-        width: 100%;
-        height: auto;
-        background-color: #525252;
-        img {
-            display: block;
-            margin: auto;
-        }
-    }
-    */
+    //Would use extend for current and initial since they're mostly the same.
+    //Sadly, the media query protection prevents that.
     .initial-slide {
         @include displayFlex();
         height: $slides-height;
@@ -260,8 +252,19 @@ ul {
         }
     }
     .previous-slide {
-        @extend .initial-slide;
+        @include displayFlex();
+        height: $slides-height;
+        width: 100%;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #525252;
         z-index: 1;
+        img {
+            flex-shrink: 0;
+            display: block;
+        }
     }
     .current-slide {
         @include displayFlex();
@@ -273,7 +276,7 @@ ul {
         z-index: 2;
         @include animation(transitionSlide 1.75s ease-in forwards);
         img {
-            @include animation(maintainImageAspect 1.75s ease-in forwards);
+            @include animation(maintainImageAspect 1.75s ease-in backwards);
             flex-shrink: 0;
             display: block;
         }
@@ -301,17 +304,18 @@ ul {
         height: $slides-height;
         width: 100%;
         left: 0;
-        @include transform(rotate(0) scale(1, 1));
+        
+        @include transform(rotate(0) scale(1.0, 1.0));
     }
 }
 
 @keyframes maintainImageAspect {
     0% {
-        @include transform(rotate(60deg) scale(0.2, 0.2));
+        @include transform(rotate(60deg) scale(0.20, 0.20));
     }
     100% {
         //counter rotate image against animation
-        @include transform(rotate(0deg) scale(1, 1));
+        @include transform(rotate(0deg) scale(1.0, 1.0));
     }
 }
 

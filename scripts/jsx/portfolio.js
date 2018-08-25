@@ -12,7 +12,7 @@ const currentProjects = [
     {
         key: 1,
         name: "Test project",
-        projectImg: "./media/images/Revaliir.PNG",
+        projectImg: "./media/images/spanishFrequency.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     },
@@ -93,11 +93,10 @@ class ProjectsSlideshow extends React.Component {
         this.state = {
             slides: [],
             currentSlide: 1,
-            previousSlide: 0
+            previousSlide: -1
         }
 
         this.handleSlideSelect = this.handleSlideSelect.bind(this);
-        this.handleAnimatedTransition = this.handleAnimatedTransition.bind(this);
     }
 
     componentDidMount() {
@@ -112,11 +111,6 @@ class ProjectsSlideshow extends React.Component {
         }
     }
 
-    handleAnimatedTransition() {
-        //Optional: First, extend from the parrallellogram to the bottom of the screen. This will cut the screenshot image
-        //Mandatory: Animated expansion of the slide from the center.
-    }
-
     render() {
         const slides = this.state.slides.map((slide, index) => {
             return (
@@ -125,14 +119,14 @@ class ProjectsSlideshow extends React.Component {
                     project={slide}
                     currentSlide={index + 1 === this.state.currentSlide ? true : false}
                     previousSlide={index + 1 === this.state.previousSlide ? true : false}
-                    justInitialized={this.state.previousSlide === 0 ? true: false}
+                    justInitialized={this.state.previousSlide === -1 ? true : false}
                 />
             );
         });
 
         return (
             <div className="col-xs-12 slideshow">
-                <div className="toolbar">
+                <div className="project-selection">
                     <button onClick={() => this.handleSlideSelect(this.state.currentSlide + 1)}>Test</button>
                 </div>
                 <div className="slides">
@@ -147,9 +141,31 @@ class Slide extends React.Component {
 
     render() {
         return (
+            <div>
+                <div className={"slide " + (this.props.justInitialized && this.props.currentSlide ? "initial-slide" : this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "")}>
+                    <img src={this.props.project.projectImg} />
+                </div>
+            </div>
+        );
+    }
+}
 
-            <div className={"slide " + (this.props.justInitialized && this.props.currentSlide ? "initial-slide" : this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "")}>
-                <img src={this.props.project.projectImg} />
+class SlideSelection extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleSlideSelect = this.handleSlideSelect.bind(this);
+    }
+
+    handleSlideSelect(e) {
+        this.props.handleSlideSelect(e.target.value);
+    }
+
+    render() {
+
+        return (
+            <div className="project-selection">
+                <button onClick={this.handleSlideSelect}>Test</button>
             </div>
         );
     }

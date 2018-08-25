@@ -149,15 +149,6 @@ ul {
   padding: 10px 0px;
   background-color: #313131;
   width: 97%;
-  /* .slides {
-      display: block;
-      overflow: hidden;
-      position: relative;
-      top: 0;
-      left: 0;
-      height: $slides-height;
-      width: 100%;
-  } */
 }
 .slideshow .toolbar {
   height: 25px;
@@ -194,19 +185,18 @@ ul {
   margin: auto;
 }
 
+.initial-slide {
+  width: 100%;
+  height: auto;
+  background-color: #525252;
+}
+.initial-slide img {
+  display: block;
+  margin: auto;
+}
+
 @media only screen {
-  /*
   .initial-slide {
-      width: 100%;
-      height: auto;
-      background-color: #525252;
-      img {
-          display: block;
-          margin: auto;
-      }
-  }
-  */
-  .initial-slide, .previous-slide {
     display: -webkit-flex;
     display: flex;
     height: 450px;
@@ -217,13 +207,26 @@ ul {
     overflow: hidden;
     background-color: #525252;
   }
-  .initial-slide img, .previous-slide img {
+  .initial-slide img {
     flex-shrink: 0;
     display: block;
   }
 
   .previous-slide {
+    display: -webkit-flex;
+    display: flex;
+    height: 450px;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #525252;
     z-index: 1;
+  }
+  .previous-slide img {
+    flex-shrink: 0;
+    display: block;
   }
 
   .current-slide {
@@ -242,11 +245,11 @@ ul {
     animation: transitionSlide 1.75s ease-in forwards;
   }
   .current-slide img {
-    -webkit-animation: maintainImageAspect 1.75s ease-in forwards;
-    -moz-animation: maintainImageAspect 1.75s ease-in forwards;
-    -o-animation: maintainImageAspect 1.75s ease-in forwards;
-    -ms-animation: maintainImageAspect 1.75s ease-in forwards;
-    animation: maintainImageAspect 1.75s ease-in forwards;
+    -webkit-animation: maintainImageAspect 1.75s ease-in backwards;
+    -moz-animation: maintainImageAspect 1.75s ease-in backwards;
+    -o-animation: maintainImageAspect 1.75s ease-in backwards;
+    -ms-animation: maintainImageAspect 1.75s ease-in backwards;
+    animation: maintainImageAspect 1.75s ease-in backwards;
     flex-shrink: 0;
     display: block;
   }

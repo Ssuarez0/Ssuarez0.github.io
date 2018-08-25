@@ -19,7 +19,7 @@ var currentProjects = [{
 }, {
     key: 1,
     name: "Test project",
-    projectImg: "./media/images/Revaliir.PNG",
+    projectImg: "./media/images/spanishFrequency.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
@@ -95,11 +95,10 @@ var ProjectsSlideshow = function (_React$Component) {
         _this.state = {
             slides: [],
             currentSlide: 1,
-            previousSlide: 0
+            previousSlide: -1
         };
 
         _this.handleSlideSelect = _this.handleSlideSelect.bind(_this);
-        _this.handleAnimatedTransition = _this.handleAnimatedTransition.bind(_this);
         return _this;
     }
 
@@ -118,12 +117,6 @@ var ProjectsSlideshow = function (_React$Component) {
             }
         }
     }, {
-        key: "handleAnimatedTransition",
-        value: function handleAnimatedTransition() {
-            //Optional: First, extend from the parrallellogram to the bottom of the screen. This will cut the screenshot image
-            //Mandatory: Animated expansion of the slide from the center.
-        }
-    }, {
         key: "render",
         value: function render() {
             var _this2 = this;
@@ -134,7 +127,7 @@ var ProjectsSlideshow = function (_React$Component) {
                     project: slide,
                     currentSlide: index + 1 === _this2.state.currentSlide ? true : false,
                     previousSlide: index + 1 === _this2.state.previousSlide ? true : false,
-                    justInitialized: _this2.state.previousSlide === 0 ? true : false
+                    justInitialized: _this2.state.previousSlide === -1 ? true : false
                 });
             });
 
@@ -143,7 +136,7 @@ var ProjectsSlideshow = function (_React$Component) {
                 { className: "col-xs-12 slideshow" },
                 React.createElement(
                     "div",
-                    { className: "toolbar" },
+                    { className: "project-selection" },
                     React.createElement(
                         "button",
                         { onClick: function onClick() {
@@ -178,13 +171,53 @@ var Slide = function (_React$Component2) {
         value: function render() {
             return React.createElement(
                 "div",
-                { className: "slide " + (this.props.justInitialized && this.props.currentSlide ? "initial-slide" : this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "") },
-                React.createElement("img", { src: this.props.project.projectImg })
+                null,
+                React.createElement(
+                    "div",
+                    { className: "slide " + (this.props.justInitialized && this.props.currentSlide ? "initial-slide" : this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "") },
+                    React.createElement("img", { src: this.props.project.projectImg })
+                )
             );
         }
     }]);
 
     return Slide;
+}(React.Component);
+
+var SlideSelection = function (_React$Component3) {
+    _inherits(SlideSelection, _React$Component3);
+
+    function SlideSelection(props) {
+        _classCallCheck(this, SlideSelection);
+
+        var _this4 = _possibleConstructorReturn(this, (SlideSelection.__proto__ || Object.getPrototypeOf(SlideSelection)).call(this, props));
+
+        _this4.handleSlideSelect = _this4.handleSlideSelect.bind(_this4);
+        return _this4;
+    }
+
+    _createClass(SlideSelection, [{
+        key: "handleSlideSelect",
+        value: function handleSlideSelect(e) {
+            this.props.handleSlideSelect(e.target.value);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+
+            return React.createElement(
+                "div",
+                { className: "project-selection" },
+                React.createElement(
+                    "button",
+                    { onClick: this.handleSlideSelect },
+                    "Test"
+                )
+            );
+        }
+    }]);
+
+    return SlideSelection;
 }(React.Component);
 
 ReactDOM.render(React.createElement(ProjectsSlideshow, null), document.getElementById('projects'));
