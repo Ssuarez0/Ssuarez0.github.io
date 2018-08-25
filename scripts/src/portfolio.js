@@ -1,3 +1,7 @@
+'use strict';
+
+//react and projects
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7,83 +11,78 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var currentProjects = [{
+    key: 0,
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
+    githubLink: "https://github.com/Ssuarez0/",
+    websiteLink: "https://revaliir.net/index/"
+}, {
+    key: 1,
+    name: "Test project",
+    projectImg: "./media/images/spanishFrequency.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
+    key: 2,
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
+    key: 3,
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
+    key: 4,
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
+    key: 5,
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
+    key: 6,
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
+    key: 7,
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
+    key: 8,
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
+    key: 9,
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
+    key: 10,
     name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
+    key: 11,
     name: "Test project",
-    projectImg: "./media/images/",
-    githubLink: "https://github.com/Ssuarez0/",
-    websiteLink: ""
-}, {
-    name: "Test project",
-    projectImg: "./media/images/",
+    projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }];
-
-//jquery
-$(document).ready(function () {
-    $('a.scrollable').click(function (e) {
-        e.preventDefault();
-        var $anchorHref = $(this).attr('href');
-        $elementId = $($anchorHref);
-        /* Both html and body necessary to accomodate all browsers. */
-        $('html, body').stop().animate({ scrollTop: $($elementId).offset().top }, 1400);
-    });
-
-    $('#portfolio-navigation a').click(function (e) {
-        $('#portfolio-navigation').collapse('hide');
-    });
-});
-
-//react
 
 var ProjectsSlideshow = function (_React$Component) {
     _inherits(ProjectsSlideshow, _React$Component);
@@ -95,11 +94,11 @@ var ProjectsSlideshow = function (_React$Component) {
 
         _this.state = {
             slides: [],
-            currentSlide: 1
+            currentSlide: 1,
+            previousSlide: -1
         };
 
         _this.handleSlideSelect = _this.handleSlideSelect.bind(_this);
-        _this.handleAnimatedTransition = _this.handleAnimatedTransition.bind(_this);
         return _this;
     }
 
@@ -107,32 +106,50 @@ var ProjectsSlideshow = function (_React$Component) {
         key: "componentDidMount",
         value: function componentDidMount() {
             //Populate the projects state
-            this.setState({ slides: currentProjects });
+            this.setState(Object.assign({}, this.state, { slides: currentProjects }));
         }
     }, {
         key: "handleSlideSelect",
-        value: function handleSlideSelect() {
+        value: function handleSlideSelect(nextSlide) {
             //Adjust current slide by clicking on the previews
-        }
-    }, {
-        key: "handleAnimatedTransition",
-        value: function handleAnimatedTransition() {
-            //Optional: First, extend from the parrallellogram to the bottom of the screen. This will cut the screenshot image
-            //Mandatory: Animated expansion of the slide from the center.
+            if (this.state.slides.length >= nextSlide && nextSlide > 0) {
+                this.setState(Object.assign({}, this.state, { currentSlide: nextSlide, previousSlide: this.state.currentSlide }));
+            }
         }
     }, {
         key: "render",
         value: function render() {
-            var slides = this.state.slides.map(function (slide) {
-                React.createElement(Slide, {
-                    project: slide
+            var _this2 = this;
+
+            var slides = this.state.slides.map(function (slide, index) {
+                return React.createElement(Slide, {
+                    key: index + 1,
+                    project: slide,
+                    currentSlide: index + 1 === _this2.state.currentSlide ? true : false,
+                    previousSlide: index + 1 === _this2.state.previousSlide ? true : false,
+                    justInitialized: _this2.state.previousSlide === -1 ? true : false
                 });
             });
 
             return React.createElement(
                 "div",
-                null,
-                slides
+                { className: "col-xs-12 slideshow" },
+                React.createElement(
+                    "div",
+                    { className: "project-selection" },
+                    React.createElement(
+                        "button",
+                        { onClick: function onClick() {
+                                return _this2.handleSlideSelect(_this2.state.currentSlide + 1);
+                            } },
+                        "Test"
+                    )
+                ),
+                React.createElement(
+                    "div",
+                    { className: "slides" },
+                    slides
+                )
             );
         }
     }]);
@@ -152,19 +169,14 @@ var Slide = function (_React$Component2) {
     _createClass(Slide, [{
         key: "render",
         value: function render() {
-            var projectDisplay = this.props.project.hasOwnProperty("websiteLink") ? React.createElement(
-                "div",
-                null,
-                React.createElement("iframe", null)
-            ) : React.createElement(
-                "div",
-                null,
-                React.createElement("img", { src: slide.projectImg })
-            );
             return React.createElement(
                 "div",
                 null,
-                projectDisplay
+                React.createElement(
+                    "div",
+                    { className: "slide " + (this.props.justInitialized && this.props.currentSlide ? "initial-slide" : this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "") },
+                    React.createElement("img", { src: this.props.project.projectImg })
+                )
             );
         }
     }]);
@@ -172,4 +184,40 @@ var Slide = function (_React$Component2) {
     return Slide;
 }(React.Component);
 
-ReactDOM.render(React.createElement(ProjectsSlideshow, null), document.getElementById("projects"));
+var SlideSelection = function (_React$Component3) {
+    _inherits(SlideSelection, _React$Component3);
+
+    function SlideSelection(props) {
+        _classCallCheck(this, SlideSelection);
+
+        var _this4 = _possibleConstructorReturn(this, (SlideSelection.__proto__ || Object.getPrototypeOf(SlideSelection)).call(this, props));
+
+        _this4.handleSlideSelect = _this4.handleSlideSelect.bind(_this4);
+        return _this4;
+    }
+
+    _createClass(SlideSelection, [{
+        key: "handleSlideSelect",
+        value: function handleSlideSelect(e) {
+            this.props.handleSlideSelect(e.target.value);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+
+            return React.createElement(
+                "div",
+                { className: "project-selection" },
+                React.createElement(
+                    "button",
+                    { onClick: this.handleSlideSelect },
+                    "Test"
+                )
+            );
+        }
+    }]);
+
+    return SlideSelection;
+}(React.Component);
+
+ReactDOM.render(React.createElement(ProjectsSlideshow, null), document.getElementById('projects'));

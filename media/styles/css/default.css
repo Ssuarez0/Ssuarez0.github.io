@@ -1,0 +1,332 @@
+/***********************Original*****************/
+body {
+  background: url(../../images/office2.jpg) no-repeat center center fixed;
+  background-color: #05241a;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: relative;
+}
+
+/* Required for scrollspy plugin to work.*/
+html {
+  height: 100%;
+}
+
+/* Don't touch. */
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+#content {
+  background-color: #30664f;
+  color: white;
+  margin-top: 0px;
+  padding: 0px;
+  position: relative;
+}
+
+#navheader {
+  margin-bottom: 0px;
+}
+
+#wordcloud {
+  margin-top: 20px;
+}
+
+.section-divider {
+  border-top: 4px solid;
+  border-color: white;
+  width: 40%;
+  text-align: center;
+}
+
+.enclosed-anchor {
+  color: white;
+  font-weight: 900;
+}
+
+.enclosed-anchor:hover {
+  color: white;
+}
+
+.profile-image {
+  max-height: 300px;
+  margin-bottom: 20px;
+}
+
+.skills-list h3 {
+  margin: 0px;
+}
+
+.primary-logo {
+  background-color: #05241a;
+  padding: 60px 0px 30px 0px;
+}
+
+.centered-intro {
+  text-align: center;
+  padding-left: 4.16666667%;
+  padding-right: 4.16666667%;
+}
+.centered-intro blockquote {
+  border: none;
+  font-size: smaller;
+  font-style: italic;
+  padding: 0px;
+}
+.centered-intro blockquote footer.block-citation {
+  color: white;
+}
+
+.project-links {
+  padding: 5px 0px 5px 0px;
+}
+.project-links .project-link {
+  margin: 10px;
+  font-size: large;
+  color: #30664f;
+}
+
+.contact-details {
+  background-color: #05241a;
+  padding: 10px 0px 30px 0px;
+  color: white;
+}
+.contact-details .social-media-links {
+  color: white;
+  font-size: 3em;
+  margin: 0px 15px 15px 15px;
+}
+
+/*mobile and tablet view
+    keyword only makes this ignored by old browsers
+*/
+@media only screen and (max-device-width: 767px) {
+  .mobile-home {
+    position: fixed;
+    z-index: 500;
+    bottom: 2%;
+    right: 2%;
+  }
+
+  .home-button {
+    color: white;
+    font-size: 2em;
+    font-weight: 900;
+    padding: 5px;
+    border-radius: 50%;
+    border: 1px solid white;
+    background-color: #05241a;
+  }
+
+  .home-button:hover {
+    color: white;
+    background-color: #30664f;
+  }
+}
+/*desktop view
+    lack of keyword only means older browsers will simply render this as the default
+    phones don't typically use browsers that old, so this is safe as the default
+*/
+@media screen and (min-device-width: 767px) {
+  /*hides the button div for desktop*/
+  .mobile-home {
+    display: none;
+  }
+}
+.nav-point {
+  position: relative;
+  top: -50px;
+}
+
+/***********************Sass*****************/
+.slideshow {
+  height: 500px;
+  margin: 20px 1.5%;
+  padding: 10px 0px;
+  background-color: #313131;
+  width: 97%;
+}
+.slideshow .toolbar {
+  height: 25px;
+  width: 100%;
+}
+.slideshow .slides {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 450px;
+  width: 100%;
+}
+
+.slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.slide img {
+  width: auto;
+  height: 450px;
+  display: none;
+}
+
+.current-slide {
+  width: 100%;
+  height: auto;
+  background-color: #525252;
+}
+.current-slide img {
+  display: block;
+  margin: auto;
+}
+
+.initial-slide {
+  width: 100%;
+  height: auto;
+  background-color: #525252;
+}
+.initial-slide img {
+  display: block;
+  margin: auto;
+}
+
+@media only screen {
+  .initial-slide {
+    display: -webkit-flex;
+    display: flex;
+    height: 450px;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #525252;
+  }
+  .initial-slide img {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .previous-slide {
+    display: -webkit-flex;
+    display: flex;
+    height: 450px;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #525252;
+    z-index: 1;
+  }
+  .previous-slide img {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .current-slide {
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #525252;
+    z-index: 2;
+    -webkit-animation: transitionSlide 1.75s ease-in forwards;
+    -moz-animation: transitionSlide 1.75s ease-in forwards;
+    -o-animation: transitionSlide 1.75s ease-in forwards;
+    -ms-animation: transitionSlide 1.75s ease-in forwards;
+    animation: transitionSlide 1.75s ease-in forwards;
+  }
+  .current-slide img {
+    -webkit-animation: maintainImageAspect 1.75s ease-in backwards;
+    -moz-animation: maintainImageAspect 1.75s ease-in backwards;
+    -o-animation: maintainImageAspect 1.75s ease-in backwards;
+    -ms-animation: maintainImageAspect 1.75s ease-in backwards;
+    animation: maintainImageAspect 1.75s ease-in backwards;
+    flex-shrink: 0;
+    display: block;
+  }
+}
+@keyframes transitionSlide {
+  0% {
+    -webkit-transform: rotate(-60deg) scale(5, 5);
+    -o-transform: rotate(-60deg) scale(5, 5);
+    -ms-transform: rotate(-60deg) scale(5, 5);
+    transform: rotate(-60deg) scale(5, 5);
+    height: 0px;
+    width: 1%;
+    left: 50%;
+  }
+  35% {
+    height: 450px;
+    width: 1%;
+    left: 50%;
+  }
+  99% {
+    height: 450px;
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    height: 450px;
+    width: 100%;
+    left: 0;
+    -webkit-transform: rotate(0) scale(1, 1);
+    -o-transform: rotate(0) scale(1, 1);
+    -ms-transform: rotate(0) scale(1, 1);
+    transform: rotate(0) scale(1, 1);
+  }
+}
+@keyframes maintainImageAspect {
+  0% {
+    -webkit-transform: rotate(60deg) scale(0.2, 0.2);
+    -o-transform: rotate(60deg) scale(0.2, 0.2);
+    -ms-transform: rotate(60deg) scale(0.2, 0.2);
+    transform: rotate(60deg) scale(0.2, 0.2);
+  }
+  100% {
+    -webkit-transform: rotate(0deg) scale(1, 1);
+    -o-transform: rotate(0deg) scale(1, 1);
+    -ms-transform: rotate(0deg) scale(1, 1);
+    transform: rotate(0deg) scale(1, 1);
+  }
+}
+@keyframes transitionDescription {
+  0% {
+    -webkit-transform: rotate(-60deg) scale(5, 5);
+    -o-transform: rotate(-60deg) scale(5, 5);
+    -ms-transform: rotate(-60deg) scale(5, 5);
+    transform: rotate(-60deg) scale(5, 5);
+    height: 0px;
+    width: 1%;
+    left: 50%;
+  }
+  35% {
+    height: 450px;
+    width: 1%;
+    left: 50%;
+  }
+  99% {
+    height: 450px;
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    height: 450px;
+    width: 100%;
+    left: 0;
+    -webkit-transform: rotate(0) scale(1, 1);
+    -o-transform: rotate(0) scale(1, 1);
+    -ms-transform: rotate(0) scale(1, 1);
+    transform: rotate(0) scale(1, 1);
+  }
+}
+
+/*# sourceMappingURL=default.css.map */
