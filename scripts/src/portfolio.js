@@ -2,6 +2,9 @@
 
 //react and projects
 
+//Projects
+//Defined outside to keep them organized. Would normally store as json, but no need right now.
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84,6 +87,8 @@ var currentProjects = [{
     websiteLink: ""
 }];
 
+//Classes
+
 var ProjectsSlideshow = function (_React$Component) {
     _inherits(ProjectsSlideshow, _React$Component);
 
@@ -93,7 +98,7 @@ var ProjectsSlideshow = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (ProjectsSlideshow.__proto__ || Object.getPrototypeOf(ProjectsSlideshow)).call(this, props));
 
         _this.state = {
-            slides: [],
+            slides: currentProjects,
             currentSlide: 1,
             previousSlide: -1
         };
@@ -103,16 +108,10 @@ var ProjectsSlideshow = function (_React$Component) {
     }
 
     _createClass(ProjectsSlideshow, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            //Populate the projects state
-            this.setState(Object.assign({}, this.state, { slides: currentProjects }));
-        }
-    }, {
         key: "handleSlideSelect",
         value: function handleSlideSelect(nextSlide) {
             //Adjust current slide by clicking on the previews
-            if (this.state.slides.length >= nextSlide && nextSlide > 0) {
+            if (nextSlide <= this.state.slides.length && nextSlide > 0) {
                 this.setState(Object.assign({}, this.state, { currentSlide: nextSlide, previousSlide: this.state.currentSlide }));
             }
         }
@@ -123,7 +122,7 @@ var ProjectsSlideshow = function (_React$Component) {
 
             var slides = this.state.slides.map(function (slide, index) {
                 return React.createElement(Slide, {
-                    key: index + 1,
+                    key: (index + 1).toString(),
                     project: slide,
                     currentSlide: index + 1 === _this2.state.currentSlide ? true : false,
                     previousSlide: index + 1 === _this2.state.previousSlide ? true : false,
@@ -134,21 +133,19 @@ var ProjectsSlideshow = function (_React$Component) {
             return React.createElement(
                 "div",
                 { className: "col-xs-12 slideshow" },
+                React.createElement(SlideshowControls, {
+                    projects: this.state.slides,
+                    currentSlide: this.state.currentSlide,
+                    handleSlideSelect: this.handleSlideSelect
+                }),
                 React.createElement(
                     "div",
-                    { className: "project-selection" },
+                    { className: "slide-section" },
                     React.createElement(
-                        "button",
-                        { onClick: function onClick() {
-                                return _this2.handleSlideSelect(_this2.state.currentSlide + 1);
-                            } },
-                        "Test"
+                        "div",
+                        { className: "slides" },
+                        slides
                     )
-                ),
-                React.createElement(
-                    "div",
-                    { className: "slides" },
-                    slides
                 )
             );
         }
@@ -184,40 +181,149 @@ var Slide = function (_React$Component2) {
     return Slide;
 }(React.Component);
 
-var SlideSelection = function (_React$Component3) {
-    _inherits(SlideSelection, _React$Component3);
+var SlideshowControls = function (_React$Component3) {
+    _inherits(SlideshowControls, _React$Component3);
 
-    function SlideSelection(props) {
-        _classCallCheck(this, SlideSelection);
+    function SlideshowControls(props) {
+        _classCallCheck(this, SlideshowControls);
 
-        var _this4 = _possibleConstructorReturn(this, (SlideSelection.__proto__ || Object.getPrototypeOf(SlideSelection)).call(this, props));
+        var _this4 = _possibleConstructorReturn(this, (SlideshowControls.__proto__ || Object.getPrototypeOf(SlideshowControls)).call(this, props));
 
         _this4.handleSlideSelect = _this4.handleSlideSelect.bind(_this4);
+        _this4.handleDecrementSlide = _this4.handleDecrementSlide.bind(_this4);
+        _this4.handleIncrementSlide = _this4.handleIncrementSlide.bind(_this4);
+        _this4.scrollThumbnails = _this4.scrollThumbnails.bind(_this4);
+        _this4.currentThumbnail = React.createRef();
         return _this4;
     }
 
-    _createClass(SlideSelection, [{
+    _createClass(SlideshowControls, [{
         key: "handleSlideSelect",
-        value: function handleSlideSelect(e) {
-            this.props.handleSlideSelect(e.target.value);
+        value: function handleSlideSelect(nextSlideNumber) {
+            this.props.handleSlideSelect(nextSlideNumber);
+        }
+    }, {
+        key: "handleDecrementSlide",
+        value: function handleDecrementSlide() {
+            var nextSlide = this.props.currentSlide - 1;
+            if (nextSlide < 1) nextSlide = this.props.projects.length;
+            this.handleSlideSelect(nextSlide);
+        }
+    }, {
+        key: "handleIncrementSlide",
+        value: function handleIncrementSlide() {
+            var nextSlide = this.props.currentSlide + 1;
+            if (nextSlide > this.props.projects.length) nextSlide = 1;
+            this.handleSlideSelect(nextSlide);
+        }
+    }, {
+        key: "scrollThumbnails",
+        value: function scrollThumbnails() {
+            var thumbnailNode = this.currentThumbnail;
+            thumbnailNode.scrollIntoView();
+        }
+    }, {
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.scrollThumbnails();
+        }
+    }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+            this.scrollThumbnails();
         }
     }, {
         key: "render",
         value: function render() {
+            var _this5 = this;
+
+            var slides = this.props.projects.map(function (project, index) {
+                var slideNumber = index + 1;
+                if (slideNumber === _this5.props.currentSlide) {
+                    return React.createElement(
+                        "li",
+                        { ref: function ref(node) {
+                                return _this5.currentThumbnail = node;
+                            }, key: slideNumber, onClick: function onClick() {
+                                return _this5.handleSlideSelect(slideNumber);
+                            } },
+                        React.createElement("img", { className: "project-thumbnail current-project-thumbnail", src: project.projectImg })
+                    );
+                } else {
+                    return React.createElement(
+                        "li",
+                        { key: slideNumber, onClick: function onClick() {
+                                return _this5.handleSlideSelect(slideNumber);
+                            } },
+                        React.createElement("img", { className: "project-thumbnail", src: project.projectImg })
+                    );
+                }
+            });
+
+            var currentSlide = this.props.projects[this.props.currentSlide - 1];
+
+            var links = [];
+            if (currentSlide.websiteLink && currentSlide.websiteLink.length > 0) links.push(React.createElement(
+                "a",
+                { key: "website-link", className: "project-link", title: "Website", target: "_blank", href: currentSlide.websiteLink },
+                React.createElement("i", { className: "fas fa-globe" })
+            ));
+            if (currentSlide.githubLink && currentSlide.githubLink.length > 0) links.push(React.createElement(
+                "a",
+                { key: "github-link", className: "project-link", title: "Github", target: "_blank", href: currentSlide.githubLink },
+                React.createElement("i", { className: "fab fa-github" })
+            ));
 
             return React.createElement(
                 "div",
-                { className: "project-selection" },
+                { className: "project-tools" },
                 React.createElement(
-                    "button",
-                    { onClick: this.handleSlideSelect },
-                    "Test"
+                    "div",
+                    { className: "project-thumbnails" },
+                    React.createElement(
+                        "ul",
+                        null,
+                        slides
+                    )
+                ),
+                React.createElement(
+                    "div",
+                    { className: "slide-buttons" },
+                    React.createElement(
+                        "button",
+                        { onClick: this.handleDecrementSlide },
+                        React.createElement("i", { className: "fas fa-arrow-alt-circle-left" })
+                    ),
+                    React.createElement(
+                        "button",
+                        { onClick: this.handleIncrementSlide },
+                        React.createElement("i", { className: "fas fa-arrow-alt-circle-right" })
+                    )
+                ),
+                React.createElement(
+                    "div",
+                    { className: "project-information" },
+                    React.createElement(
+                        "h2",
+                        null,
+                        currentSlide.name
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        currentSlide.description
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "project-links" },
+                        links
+                    )
                 )
             );
         }
     }]);
 
-    return SlideSelection;
+    return SlideshowControls;
 }(React.Component);
 
 ReactDOM.render(React.createElement(ProjectsSlideshow, null), document.getElementById('projects'));

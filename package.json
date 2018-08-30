@@ -10,7 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/Ssuarez0/Ssuarez0.github.io.git"
   },
-  "keywords": ["Portfolio","React", "jQuery", "Bootstrap"],
+  "keywords": [
+    "Portfolio",
+    "React",
+    "jQuery",
+    "Bootstrap"
+  ],
   "author": "Stefan Suarez",
   "license": "ISC",
   "bugs": {

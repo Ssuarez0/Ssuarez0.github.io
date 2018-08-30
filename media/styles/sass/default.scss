@@ -26,18 +26,34 @@
     display: flex;
 }
 
-$slideshow-height: 500px;
-$slides-height: $slideshow-height * 0.9;
-$slideshow-toolbar-height: $slideshow-height * 0.05;
+@mixin background-size ($props...) {
+    -webkit-background-size: $props;
+    -moz-background-size: $props;
+    -o-background-size: $props;
+    background-size: $props;
+}
+
+//mobile variables
+$mobile-slideshow-height: 100vh;
+$mobile-slideshow-tools-height: $mobile-slideshow-height+1vh;
+$mobile-slides-height: $mobile-slideshow-height * 0.75;
+$mobile-slideshow-thumbnails-toolbar-height: $mobile-slideshow-height * 0.25;
+$mobile-slide-information-height: $mobile-slides-height * 0.25;
+//regular variables
+$regular-slideshow-height: 600px;
+$regular-slideshow-tools-height: $regular-slideshow-height+10px;
+$regular-slides-height: $regular-slideshow-height * 0.75;
+$regular-slideshow-thumbnails-toolbar-height: $regular-slideshow-height * 0.25;
+$regular-slide-information-height: $regular-slides-height * 0.25;
+//universal variables
+$slideshow-border: solid 3px black;
+$slideshow-border-radius: 10px;
 /***********************Original*****************/
 
 body {
     background: url(../../images/office2.jpg) no-repeat center center fixed;
     background-color: #05241a;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    @include background-size(cover);
     position: relative;
 }
 
@@ -115,15 +131,6 @@ ul {
     }
 }
 
-.project-links {
-    padding: 5px 0px 5px 0px;
-    .project-link {
-        margin: 10px;
-        font-size: large;
-        color: #30664f;
-    }
-}
-
 .contact-details {
     background-color: #05241a;
     padding: 10px 0px 30px 0px;
@@ -178,41 +185,45 @@ ul {
     top: -50px;
 }
 
-/***********************Sass*****************/
+/***********************Project Slideshow*****************/
 
-.slideshow {
-    height: $slideshow-height;
-    margin: 20px 1.5%;
-    padding: 10px 0px;
-    background-color: #313131;
-    width: 97%;
-    .toolbar {
-        height: $slideshow-toolbar-height;
-        width: 100%;
+//Animations
+@keyframes transitionSlide {
+    0% {
+        @include transform(rotate(-60deg) scale(5, 5));
+        height: 0px;
+        width: 1%;
+        left: 50%;
     }
-    .slides {
-        display: flex;
-        overflow: hidden;
-        position: relative;
-        top: 0;
+    35% {
+        height: $regular-slides-height;
+        width: 1%;
+        left: 50%;
+    }
+    99% {
+        height: $regular-slides-height;
+        width: 100%;
         left: 0;
-        height: $slides-height;
+    }
+    100% {
+        height: $regular-slides-height;
         width: 100%;
+        left: 0;
+        @include transform(rotate(0) scale(1.0, 1.0));
     }
 }
 
-.slide {
-    position: absolute;
-    left: 0;
-    top: 0;
-    img {
-        width: auto;
-        height: $slides-height;
-        display: none;
+@keyframes maintainImageAspect {
+    0% {
+        @include transform(rotate(60deg) scale(0.20, 0.20));
+    }
+    100% {
+        //counter rotate image against animation
+        @include transform(rotate(0deg) scale(1.0, 1.0));
     }
 }
 
-//older browsers
+//older browsers exclusive
 .current-slide {
     width: 100%;
     height: auto;
@@ -233,13 +244,110 @@ ul {
     }
 }
 
-//modern browsers
-@media only screen {
-    //Would use extend for current and initial since they're mostly the same.
-    //Sadly, the media query protection prevents that.
+
+
+//Desktop
+@media screen and (min-device-width: 768px) {
+    .slideshow {
+        @include displayFlex();
+        height: $regular-slideshow-height;
+        margin: 20px 1.5%;
+        padding: 10px 0px;
+        background-color: #313131;
+        width: 97%;
+        position: relative;
+        .project-tools {
+            @include displayFlex();
+            flex-flow: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: $regular-slideshow-tools-height;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            outline: $slideshow-border;
+            .project-thumbnails {
+                height: $regular-slideshow-thumbnails-toolbar-height;
+                width: 100%;
+                overflow-y: hidden;
+                overflow-x: auto;
+                ul {
+                    @include displayFlex();
+                    flex-flow: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    width: 100%;
+                    li {
+                        img {
+                            margin: 10px;
+                            height: $regular-slideshow-thumbnails-toolbar-height * .75;
+                            width: 200px;
+                            flex-shrink: 0;
+                            &.current-project-thumbnail {
+                                outline: solid 3px #9bffa3;
+                            }
+                        }
+                    }
+                }
+            }
+            .slide-buttons {
+                @include displayFlex();
+                flex-flow: row;
+                justify-content: space-between;
+                align-items: center;
+                height: 20px;
+                width: 100%;
+            }
+            .project-information {
+                font-family: monospace;
+                color: white;
+                background-color: #313131;
+                width: 100%;
+                .project-links {
+                    padding: 5px 0px 5px 0px;
+                    .project-link {
+                        margin: 10px;
+                        font-size: large;
+                        color: white;
+                    }
+                }
+            }
+        }
+        .slide-section {
+            position: absolute;
+            top: 25%;
+            left: 0;
+            width: 100%;
+            .slides {
+                @include displayFlex();
+                overflow: hidden;
+                position: relative;
+                top: 0;
+                left: 0;
+                height: $regular-slides-height;
+                width: 100%;
+            }
+        }
+    }
+
+    .slide {
+        position: absolute;
+        left: 0;
+        top: 0;
+        img {
+            width: auto;
+            height: $regular-slides-height;
+            display: none;
+        }
+    }
+}
+
+@media only screen and (min-device-width: 768px) {
     .initial-slide {
         @include displayFlex();
-        height: $slides-height;
+        height: $regular-slides-height;
         width: 100%;
         flex-flow: row wrap;
         justify-content: center;
@@ -253,7 +361,7 @@ ul {
     }
     .previous-slide {
         @include displayFlex();
-        height: $slides-height;
+        height: $regular-slides-height;
         width: 100%;
         flex-flow: row wrap;
         justify-content: center;
@@ -274,72 +382,156 @@ ul {
         overflow: hidden;
         background-color: #525252;
         z-index: 2;
-        @include animation(transitionSlide 1.75s ease-in forwards);
+        @include animation(transitionSlide 1s ease-in forwards);
         img {
-            @include animation(maintainImageAspect 1.75s ease-in backwards);
+            @include animation(maintainImageAspect 1s ease-in backwards);
             flex-shrink: 0;
             display: block;
         }
     }
 }
 
-@keyframes transitionSlide {
-    0% {
-        @include transform(rotate(-60deg) scale(5, 5));
-        height: 0px;
-        width: 1%;
-        left: 50%;
+//Mobile
+@media screen and (max-device-width: 767px) {
+    .slideshow {
+        @include displayFlex();
+        height: $mobile-slideshow-height;
+        margin: 20px 1.5%;
+        padding: 10px 0px;
+        background-color: #313131;
+        width: 97%;
+        position: relative;
+        .project-tools {
+            @include displayFlex();
+            flex-flow: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: $mobile-slideshow-tools-height;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            outline: $slideshow-border;
+            .project-thumbnails {
+                height: $mobile-slideshow-thumbnails-toolbar-height;
+                width: 100%;
+                overflow-y: hidden;
+                overflow-x: auto;
+                ul {
+                    @include displayFlex();
+                    flex-flow: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    width: 100%;
+                    li {
+                        img {
+                            margin: 10px;
+                            height: $mobile-slideshow-thumbnails-toolbar-height * .75;
+                            width: 200px;
+                            flex-shrink: 0;
+                            &.current-project-thumbnail {
+                                outline: solid 3px #9bffa3;
+                            }
+                        }
+                    }
+                }
+            }
+            .slide-buttons {
+                @include displayFlex();
+                flex-flow: row;
+                justify-content: space-between;
+                align-items: center;
+                height: 20px;
+                width: 100%;
+            }
+            .project-information {
+                font-family: monospace;
+                color: white;
+                background-color: #313131;
+                width: 100%;
+                .project-links {
+                    padding: 5px 0px 5px 0px;
+                    .project-link {
+                        margin: 10px;
+                        font-size: large;
+                        color: white;
+                    }
+                }
+            }
+        }
+        .slide-section {
+            position: absolute;
+            top: 25%;
+            left: 0;
+            width: 100%;
+            .slides {
+                @include displayFlex();
+                overflow: hidden;
+                position: relative;
+                top: 0;
+                left: 0;
+                height: $mobile-slides-height;
+                width: 100%;
+            }
+        }
     }
-    35% {
-        height: $slides-height;
-        width: 1%;
-        left: 50%;
-    }
-    99% {
-        height: $slides-height;
-        width: 100%;
+
+    .slide {
+        position: absolute;
         left: 0;
-    }
-    100% {
-        height: $slides-height;
-        width: 100%;
-        left: 0;
-        
-        @include transform(rotate(0) scale(1.0, 1.0));
+        top: 0;
+        img {
+            width: auto;
+            height: $mobile-slides-height;
+            display: none;
+        }
     }
 }
 
-@keyframes maintainImageAspect {
-    0% {
-        @include transform(rotate(60deg) scale(0.20, 0.20));
-    }
-    100% {
-        //counter rotate image against animation
-        @include transform(rotate(0deg) scale(1.0, 1.0));
-    }
-}
-
-@keyframes transitionDescription {
-    0% {
-        @include transform(rotate(-60deg) scale(5, 5));
-        height: 0px;
-        width: 1%;
-        left: 50%;
-    }
-    35% {
-        height: $slides-height;
-        width: 1%;
-        left: 50%;
-    }
-    99% {
-        height: $slides-height;
+@media only screen and (max-device-width: 767px) {
+    .initial-slide {
+        @include displayFlex();
+        height: $mobile-slides-height;
         width: 100%;
-        left: 0;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #525252;
+        img {
+            flex-shrink: 0;
+            display: block;
+        }
     }
-    100% {
-        height: $slides-height;
+    .previous-slide {
+        @include displayFlex();
+        height: $mobile-slides-height;
         width: 100%;
-        left: 0;
-        @include transform(rotate(0) scale(1, 1));
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #525252;
+        z-index: 1;
+        img {
+            flex-shrink: 0;
+            display: block;
+        }
+    }
+    .current-slide {
+        @include displayFlex();
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #525252;
+        z-index: 2;
+        @include animation(transitionSlide 1s ease-in forwards);
+        img {
+            @include animation(maintainImageAspect 1s ease-in backwards);
+            flex-shrink: 0;
+            display: block;
+        }
     }
 }
