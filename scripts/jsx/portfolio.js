@@ -126,7 +126,7 @@ class ProjectsSlideshow extends React.Component {
         });
 
         return (
-            <div className="col-xs-12 slideshow">
+            <div className="slideshow">
                 <SlideshowControls
                     projects={this.state.slides}
                     currentSlide={this.state.currentSlide}
@@ -170,13 +170,15 @@ class SlideshowControls extends React.Component {
         this.props.handleSlideSelect(nextSlideNumber);
     }
 
-    handleDecrementSlide() {
+    handleDecrementSlide(e) {
+        e.preventDefault();
         let nextSlide = this.props.currentSlide - 1;
         if (nextSlide < 1) nextSlide = this.props.projects.length;
         this.handleSlideSelect(nextSlide);
     }
 
-    handleIncrementSlide() {
+    handleIncrementSlide(e) {
+        e.preventDefault();
         let nextSlide = this.props.currentSlide + 1;
         if (nextSlide > this.props.projects.length) nextSlide = 1;
         this.handleSlideSelect(nextSlide);
@@ -185,10 +187,6 @@ class SlideshowControls extends React.Component {
     scrollThumbnails() {
         const thumbnailNode = this.currentThumbnail;
         thumbnailNode.scrollIntoView();
-    }
-
-    componentDidMount() {
-        this.scrollThumbnails();
     }
 
     componentDidUpdate() {
@@ -227,11 +225,12 @@ class SlideshowControls extends React.Component {
                     </ul>  
                 </div>
                 <div className="slide-buttons">
-                    <button onClick={this.handleDecrementSlide}><i className="fas fa-arrow-alt-circle-left"></i></button>
-                    <button onClick={this.handleIncrementSlide}><i className="fas fa-arrow-alt-circle-right"></i></button>
+                    <a className="maximize-image"></a>
+                    <a className="slide-button" href="#" onClick={this.handleDecrementSlide}><i className="fas fa-arrow-alt-circle-left"></i></a>
+                    <a className="slide-button" href="#" onClick={this.handleIncrementSlide}><i className="fas fa-arrow-alt-circle-right"></i></a>
                 </div>
                 <div  className="project-information">
-                    <h2>{currentSlide.name}</h2>
+                    <h3>{currentSlide.name}</h3>
                     <p>{currentSlide.description}</p>
                     <div className="project-links">
                         {links}

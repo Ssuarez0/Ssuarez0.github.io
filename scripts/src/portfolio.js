@@ -132,7 +132,7 @@ var ProjectsSlideshow = function (_React$Component) {
 
             return React.createElement(
                 "div",
-                { className: "col-xs-12 slideshow" },
+                { className: "slideshow" },
                 React.createElement(SlideshowControls, {
                     projects: this.state.slides,
                     currentSlide: this.state.currentSlide,
@@ -204,14 +204,16 @@ var SlideshowControls = function (_React$Component3) {
         }
     }, {
         key: "handleDecrementSlide",
-        value: function handleDecrementSlide() {
+        value: function handleDecrementSlide(e) {
+            e.preventDefault();
             var nextSlide = this.props.currentSlide - 1;
             if (nextSlide < 1) nextSlide = this.props.projects.length;
             this.handleSlideSelect(nextSlide);
         }
     }, {
         key: "handleIncrementSlide",
-        value: function handleIncrementSlide() {
+        value: function handleIncrementSlide(e) {
+            e.preventDefault();
             var nextSlide = this.props.currentSlide + 1;
             if (nextSlide > this.props.projects.length) nextSlide = 1;
             this.handleSlideSelect(nextSlide);
@@ -221,11 +223,6 @@ var SlideshowControls = function (_React$Component3) {
         value: function scrollThumbnails() {
             var thumbnailNode = this.currentThumbnail;
             thumbnailNode.scrollIntoView();
-        }
-    }, {
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            this.scrollThumbnails();
         }
     }, {
         key: "componentDidUpdate",
@@ -289,14 +286,15 @@ var SlideshowControls = function (_React$Component3) {
                 React.createElement(
                     "div",
                     { className: "slide-buttons" },
+                    React.createElement("a", { className: "maximize-image" }),
                     React.createElement(
-                        "button",
-                        { onClick: this.handleDecrementSlide },
+                        "a",
+                        { className: "slide-button", href: "#", onClick: this.handleDecrementSlide },
                         React.createElement("i", { className: "fas fa-arrow-alt-circle-left" })
                     ),
                     React.createElement(
-                        "button",
-                        { onClick: this.handleIncrementSlide },
+                        "a",
+                        { className: "slide-button", href: "#", onClick: this.handleIncrementSlide },
                         React.createElement("i", { className: "fas fa-arrow-alt-circle-right" })
                     )
                 ),
@@ -304,7 +302,7 @@ var SlideshowControls = function (_React$Component3) {
                     "div",
                     { className: "project-information" },
                     React.createElement(
-                        "h2",
+                        "h3",
                         null,
                         currentSlide.name
                     ),
