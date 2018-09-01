@@ -15,73 +15,85 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var currentProjects = [{
     key: 0,
-    name: "Test project",
+    name: "Revaliir.net",
+    description: "A medium size forum website serving a dedicated, writing community. </br><strong>Live technology stack:</strong> Django 1.8, python 2.7, jquery, and bootstrap 3. </br><strong>In development technology stack:</strong> React.js, Node.js, Graphene, Django 2.0+, Python 3.7+",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: "https://revaliir.net/index/"
 }, {
     key: 1,
-    name: "Test project",
+    name: "Spanish Frequency Analyzer",
+    description: "A desktop application built for a high school Spanish teacher to help determine the frequency at which words appear in lecture notes. </br><strong>Technology stack:</strong> C# and WPF.",
     projectImg: "./media/images/spanishFrequency.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     key: 2,
     name: "Test project",
+    description: "",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     key: 3,
     name: "Test project",
+    description: "",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     key: 4,
     name: "Test project",
+    description: "",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     key: 5,
     name: "Test project",
+    description: "",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     key: 6,
     name: "Test project",
+    description: "",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     key: 7,
     name: "Test project",
+    description: "",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     key: 8,
     name: "Test project",
+    description: "",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     key: 9,
     name: "Test project",
+    description: "",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     key: 10,
     name: "Test project",
+    description: "",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
 }, {
     key: 11,
     name: "Test project",
+    description: "",
     projectImg: "./media/images/Revaliir.PNG",
     githubLink: "https://github.com/Ssuarez0/",
     websiteLink: ""
@@ -132,27 +144,35 @@ var ProjectsSlideshow = function (_React$Component) {
 
             return React.createElement(
                 "div",
-                { className: "slideshow" },
-                React.createElement(SlideshowControls, {
-                    projects: this.state.slides,
-                    currentSlide: this.state.currentSlide,
-                    handleSlideSelect: this.handleSlideSelect
-                }),
+                { className: "slideshow-container" },
                 React.createElement(
                     "div",
-                    { className: "slide-section" },
+                    { className: "slideshow-main" },
+                    React.createElement(SlideshowControls, {
+                        projects: this.state.slides,
+                        currentSlide: this.state.currentSlide,
+                        handleSlideSelect: this.handleSlideSelect
+                    }),
                     React.createElement(
                         "div",
-                        { className: "slides" },
-                        slides
+                        { className: "slide-section" },
+                        React.createElement(
+                            "div",
+                            { className: "slides" },
+                            slides
+                        )
                     )
-                )
+                ),
+                React.createElement(SlideDescription, { currentSlide: this.state.slides[this.state.currentSlide - 1] })
             );
         }
     }]);
 
     return ProjectsSlideshow;
 }(React.Component);
+
+//Handles the generation and styles for a slide image
+
 
 var Slide = function (_React$Component2) {
     _inherits(Slide, _React$Component2);
@@ -181,20 +201,73 @@ var Slide = function (_React$Component2) {
     return Slide;
 }(React.Component);
 
-var SlideshowControls = function (_React$Component3) {
-    _inherits(SlideshowControls, _React$Component3);
+//Handles the appendment of
+
+
+var SlideDescription = function (_React$Component3) {
+    _inherits(SlideDescription, _React$Component3);
+
+    function SlideDescription() {
+        _classCallCheck(this, SlideDescription);
+
+        return _possibleConstructorReturn(this, (SlideDescription.__proto__ || Object.getPrototypeOf(SlideDescription)).apply(this, arguments));
+    }
+
+    _createClass(SlideDescription, [{
+        key: "render",
+        value: function render() {
+            //Simplify prop currentSlide
+            var currentSlide = this.props.currentSlide;
+            //Format description
+            var description = { __html: currentSlide.description };
+            //Assign the links to the current slide
+            var links = [];
+            if (currentSlide.websiteLink && currentSlide.websiteLink.length > 0) links.push(React.createElement(
+                "a",
+                { key: "website-link", className: "project-link", title: "Website", target: "_blank", href: currentSlide.websiteLink },
+                React.createElement("i", { className: "fas fa-globe" })
+            ));
+            if (currentSlide.githubLink && currentSlide.githubLink.length > 0) links.push(React.createElement(
+                "a",
+                { key: "github-link", className: "project-link", title: "Github", target: "_blank", href: currentSlide.githubLink },
+                React.createElement("i", { className: "fab fa-github" })
+            ));
+
+            return React.createElement(
+                "div",
+                { className: "current-slide-details" },
+                React.createElement(
+                    "h4",
+                    { className: "slideName" },
+                    currentSlide.name
+                ),
+                React.createElement("p", { className: "slideDescription", dangerouslySetInnerHTML: description }),
+                React.createElement(
+                    "div",
+                    { className: "project-links" },
+                    links
+                )
+            );
+        }
+    }]);
+
+    return SlideDescription;
+}(React.Component);
+
+var SlideshowControls = function (_React$Component4) {
+    _inherits(SlideshowControls, _React$Component4);
 
     function SlideshowControls(props) {
         _classCallCheck(this, SlideshowControls);
 
-        var _this4 = _possibleConstructorReturn(this, (SlideshowControls.__proto__ || Object.getPrototypeOf(SlideshowControls)).call(this, props));
+        var _this5 = _possibleConstructorReturn(this, (SlideshowControls.__proto__ || Object.getPrototypeOf(SlideshowControls)).call(this, props));
 
-        _this4.handleSlideSelect = _this4.handleSlideSelect.bind(_this4);
-        _this4.handleDecrementSlide = _this4.handleDecrementSlide.bind(_this4);
-        _this4.handleIncrementSlide = _this4.handleIncrementSlide.bind(_this4);
-        _this4.scrollThumbnails = _this4.scrollThumbnails.bind(_this4);
-        _this4.currentThumbnail = React.createRef();
-        return _this4;
+        _this5.handleSlideSelect = _this5.handleSlideSelect.bind(_this5);
+        _this5.handleDecrementSlide = _this5.handleDecrementSlide.bind(_this5);
+        _this5.handleIncrementSlide = _this5.handleIncrementSlide.bind(_this5);
+        _this5.scrollThumbnails = _this5.scrollThumbnails.bind(_this5);
+        _this5.currentThumbnail = React.createRef();
+        return _this5;
     }
 
     _createClass(SlideshowControls, [{
@@ -227,22 +300,25 @@ var SlideshowControls = function (_React$Component3) {
     }, {
         key: "componentDidUpdate",
         value: function componentDidUpdate() {
-            this.scrollThumbnails();
+            //this.scrollThumbnails();
+            //Commented out but left in in case I want to use this in the future.
+            //I didn't like the way it functioned for the moment.
         }
     }, {
         key: "render",
         value: function render() {
-            var _this5 = this;
+            var _this6 = this;
 
+            //Map the slides to thumbnails
             var slides = this.props.projects.map(function (project, index) {
                 var slideNumber = index + 1;
-                if (slideNumber === _this5.props.currentSlide) {
+                if (slideNumber === _this6.props.currentSlide) {
                     return React.createElement(
                         "li",
                         { ref: function ref(node) {
-                                return _this5.currentThumbnail = node;
+                                return _this6.currentThumbnail = node;
                             }, key: slideNumber, onClick: function onClick() {
-                                return _this5.handleSlideSelect(slideNumber);
+                                return _this6.handleSlideSelect(slideNumber);
                             } },
                         React.createElement("img", { className: "project-thumbnail current-project-thumbnail", src: project.projectImg })
                     );
@@ -250,26 +326,12 @@ var SlideshowControls = function (_React$Component3) {
                     return React.createElement(
                         "li",
                         { key: slideNumber, onClick: function onClick() {
-                                return _this5.handleSlideSelect(slideNumber);
+                                return _this6.handleSlideSelect(slideNumber);
                             } },
                         React.createElement("img", { className: "project-thumbnail", src: project.projectImg })
                     );
                 }
             });
-
-            var currentSlide = this.props.projects[this.props.currentSlide - 1];
-
-            var links = [];
-            if (currentSlide.websiteLink && currentSlide.websiteLink.length > 0) links.push(React.createElement(
-                "a",
-                { key: "website-link", className: "project-link", title: "Website", target: "_blank", href: currentSlide.websiteLink },
-                React.createElement("i", { className: "fas fa-globe" })
-            ));
-            if (currentSlide.githubLink && currentSlide.githubLink.length > 0) links.push(React.createElement(
-                "a",
-                { key: "github-link", className: "project-link", title: "Github", target: "_blank", href: currentSlide.githubLink },
-                React.createElement("i", { className: "fab fa-github" })
-            ));
 
             return React.createElement(
                 "div",
@@ -296,25 +358,6 @@ var SlideshowControls = function (_React$Component3) {
                         "a",
                         { className: "slide-button", href: "#", onClick: this.handleIncrementSlide },
                         React.createElement("i", { className: "fas fa-arrow-alt-circle-right" })
-                    )
-                ),
-                React.createElement(
-                    "div",
-                    { className: "project-information" },
-                    React.createElement(
-                        "h3",
-                        null,
-                        currentSlide.name
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        currentSlide.description
-                    ),
-                    React.createElement(
-                        "div",
-                        { className: "project-links" },
-                        links
                     )
                 )
             );

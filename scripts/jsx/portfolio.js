@@ -8,14 +8,16 @@
 const currentProjects = [
     {
         key: 0,
-        name: "Test project",
+        name: "Revaliir.net",
+        description: "A medium size forum website serving a dedicated, writing community. </br><strong>Live technology stack:</strong> Django 1.8, python 2.7, jquery, and bootstrap 3. </br><strong>In development technology stack:</strong> React.js, Node.js, Graphene, Django 2.0+, Python 3.7+",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: "https://revaliir.net/index/"
     },
     {
         key: 1,
-        name: "Test project",
+        name: "Spanish Frequency Analyzer",
+        description: "A desktop application built for a high school Spanish teacher to help determine the frequency at which words appear in lecture notes. </br><strong>Technology stack:</strong> C# and WPF.",
         projectImg: "./media/images/spanishFrequency.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
@@ -23,12 +25,14 @@ const currentProjects = [
     {
         key: 2,
         name: "Test project",
+        description: "",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
     }, {
         key: 3,
         name: "Test project",
+        description: "",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
@@ -36,6 +40,7 @@ const currentProjects = [
     {
         key: 4,
         name: "Test project",
+        description: "",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
@@ -43,6 +48,7 @@ const currentProjects = [
     {
         key: 5,
         name: "Test project",
+        description: "",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
@@ -50,6 +56,7 @@ const currentProjects = [
     {
         key: 6,
         name: "Test project",
+        description: "",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
@@ -57,6 +64,7 @@ const currentProjects = [
     {
         key: 7,
         name: "Test project",
+        description: "",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
@@ -64,6 +72,7 @@ const currentProjects = [
     {
         key: 8,
         name: "Test project",
+        description: "",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
@@ -71,6 +80,7 @@ const currentProjects = [
     {
         key: 9,
         name: "Test project",
+        description: "",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
@@ -78,6 +88,7 @@ const currentProjects = [
     {
         key: 10,
         name: "Test project",
+        description: "",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
@@ -85,6 +96,7 @@ const currentProjects = [
     {
         key: 11,
         name: "Test project",
+        description: "",
         projectImg: "./media/images/Revaliir.PNG",
         githubLink: "https://github.com/Ssuarez0/",
         websiteLink: ""
@@ -126,22 +138,26 @@ class ProjectsSlideshow extends React.Component {
         });
 
         return (
-            <div className="slideshow">
-                <SlideshowControls
-                    projects={this.state.slides}
-                    currentSlide={this.state.currentSlide}
-                    handleSlideSelect={this.handleSlideSelect}
-                />
-                <div className="slide-section">
-                    <div className="slides">
-                        {slides}
+            <div className="slideshow-container">
+                <div className="slideshow-main">
+                    <SlideshowControls
+                        projects={this.state.slides}
+                        currentSlide={this.state.currentSlide}
+                        handleSlideSelect={this.handleSlideSelect}
+                    />
+                    <div className="slide-section">
+                        <div className="slides">
+                            {slides}
+                        </div>
                     </div>
                 </div>
+                <SlideDescription currentSlide={this.state.slides[this.state.currentSlide - 1]} />
             </div>
         );
     }
 }
 
+//Handles the generation and styles for a slide image
 class Slide extends React.Component {
 
     render() {
@@ -149,6 +165,30 @@ class Slide extends React.Component {
             <div>
                 <div className={"slide " + (this.props.justInitialized && this.props.currentSlide ? "initial-slide" : this.props.currentSlide ? "current-slide" : this.props.previousSlide ? "previous-slide" : "")}>
                     <img src={this.props.project.projectImg} />
+                </div>
+            </div>
+        );
+    }
+}
+
+//Handles the appendment of
+class SlideDescription extends React.Component {
+    render() {
+        //Simplify prop currentSlide
+        const currentSlide = this.props.currentSlide;
+        //Format description
+        const description = { __html: currentSlide.description };
+        //Assign the links to the current slide
+        let links = [];
+        if (currentSlide.websiteLink && currentSlide.websiteLink.length > 0) links.push(<a key="website-link" className="project-link" title="Website" target="_blank" href={currentSlide.websiteLink}><i className="fas fa-globe"></i></a>);
+        if (currentSlide.githubLink && currentSlide.githubLink.length > 0) links.push(<a key="github-link" className="project-link" title="Github" target="_blank" href={currentSlide.githubLink}><i className="fab fa-github"></i></a>);
+
+        return (
+            <div className="current-slide-details">
+                <h4 className="slideName" >{currentSlide.name}</h4>
+                <p className="slideDescription" dangerouslySetInnerHTML={description}></p>
+                <div className="project-links">
+                    {links}
                 </div>
             </div>
         );
@@ -190,51 +230,41 @@ class SlideshowControls extends React.Component {
     }
 
     componentDidUpdate() {
-        this.scrollThumbnails();
+        //this.scrollThumbnails();
+        //Commented out but left in in case I want to use this in the future.
+        //I didn't like the way it functioned for the moment.
     }
 
     render() {
+        //Map the slides to thumbnails
         const slides = this.props.projects.map((project, index) => {
             const slideNumber = index + 1;
-            if(slideNumber === this.props.currentSlide) {
+            if (slideNumber === this.props.currentSlide) {
                 return (
-                    <li ref={node => this.currentThumbnail = node} key={slideNumber} onClick={()=>this.handleSlideSelect(slideNumber)}>
+                    <li ref={node => this.currentThumbnail = node} key={slideNumber} onClick={() => this.handleSlideSelect(slideNumber)}>
                         <img className="project-thumbnail current-project-thumbnail" src={project.projectImg} />
                     </li>
                 );
             } else {
                 return (
-                    <li key={slideNumber} onClick={()=>this.handleSlideSelect(slideNumber)}>
+                    <li key={slideNumber} onClick={() => this.handleSlideSelect(slideNumber)}>
                         <img className="project-thumbnail" src={project.projectImg} />
                     </li>
                 );
             }
         });
 
-        const currentSlide = this.props.projects[this.props.currentSlide - 1];
-
-        let links = [];
-        if (currentSlide.websiteLink && currentSlide.websiteLink.length > 0) links.push(<a key="website-link" className="project-link" title="Website" target="_blank" href={currentSlide.websiteLink}><i className="fas fa-globe"></i></a>);
-        if (currentSlide.githubLink && currentSlide.githubLink.length > 0) links.push(<a key="github-link" className="project-link" title="Github" target="_blank" href={currentSlide.githubLink}><i className="fab fa-github"></i></a>);
-
         return (
             <div className="project-tools">
                 <div className="project-thumbnails">
                     <ul>
                         {slides}
-                    </ul>  
+                    </ul>
                 </div>
                 <div className="slide-buttons">
                     <a className="maximize-image"></a>
                     <a className="slide-button" href="#" onClick={this.handleDecrementSlide}><i className="fas fa-arrow-alt-circle-left"></i></a>
                     <a className="slide-button" href="#" onClick={this.handleIncrementSlide}><i className="fas fa-arrow-alt-circle-right"></i></a>
-                </div>
-                <div  className="project-information">
-                    <h3>{currentSlide.name}</h3>
-                    <p>{currentSlide.description}</p>
-                    <div className="project-links">
-                        {links}
-                    </div>
                 </div>
             </div>
         );

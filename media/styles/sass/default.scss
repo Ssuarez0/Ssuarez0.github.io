@@ -38,19 +38,15 @@ $mobile-slideshow-height: 100vh;
 $mobile-slideshow-tools-height: $mobile-slideshow-height;
 $mobile-slides-height: $mobile-slideshow-height * 0.80;
 $mobile-slideshow-thumbnails-toolbar-height: $mobile-slideshow-tools-height * 0.20;
-$mobile-slideshow-slide-buttons-height: $mobile-slideshow-tools-height * 0.65;
-$mobile-slide-information-height: $mobile-slideshow-tools-height * 0.15; //Not used
+$mobile-slideshow-slide-buttons-height: $mobile-slideshow-tools-height * 0.80;
 //regular variables
 $regular-slideshow-height: 600px;
 $regular-slideshow-tools-height: $regular-slideshow-height;
 $regular-slides-height: $regular-slideshow-height * 0.80;
 $regular-slideshow-thumbnails-toolbar-height: $regular-slideshow-tools-height * 0.20;
-$regular-slideshow-slide-buttons-height: $regular-slideshow-tools-height * 0.65;
-$regular-slide-information-height: $regular-slideshow-tools-height * 0.15; //Not used
+$regular-slideshow-slide-buttons-height: $regular-slideshow-tools-height * 0.80;
 //universal variables
-$slideshow-border-width: 3px;
-$slideshow-border: solid $slideshow-border-width black;
-$slideshow-border-radius: 10px;
+$slideshow-border: solid 3px black;
 /***********************Original*****************/
 
 body {
@@ -191,6 +187,7 @@ ul {
 /***********************Project Slideshow*****************/
 
 //Animations
+//slide transition
 @keyframes transitionRegularSlide {
     0% {
         @include transform(rotate(-60deg) scale(5, 5));
@@ -241,117 +238,138 @@ ul {
     }
 }
 
+@keyframes revealSlideDetails {
+    0% {
+        color: rgba(255, 255, 255, 0);
+    }
+    100% {
+        color: rgba(255, 255, 255, 1);
+    }
+}
+
 //All implementations
-.slideshow {
-    @include displayFlex();
+.slideshow-container {
     margin: 20px 1.5%;
     background-color: #313131;
-    height: $regular-slideshow-height;
     width: 97%;
-    position: relative;
-    .project-tools {
+    outline: $slideshow-border;
+    .slideshow-main {
         @include displayFlex();
-        flex-flow: column;
-        justify-content: space-between;
-        align-items: center;
-        height: $regular-slideshow-tools-height;
         width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 50;
-        outline: $slideshow-border;
-        .project-thumbnails {
-            width: calc(100% - 6px);
-            width: -moz-calc(100% - 6px);
-            width: -webkit-calc(100% - 6px);
-            overflow-y: hidden;
-            overflow-x: auto;
-            height: $regular-slideshow-thumbnails-toolbar-height;
-            ul {
-                @include displayFlex();
-                flex-flow: row;
-                justify-content: flex-start;
-                align-items: flex-start;
-                width: 100%;
-                li {
-                    width: 15%;
-                    flex-shrink: 0;
-                    margin-right: 10px;
-                    img {
-                        height: $regular-slideshow-thumbnails-toolbar-height * .75;
-                        width: 100%;
-                        margin: 5px;
-                        &.current-project-thumbnail {
-                            outline: solid 3px #9bffa3;
+        height: $regular-slideshow-height;
+        position: relative;
+        .project-tools {
+            @include displayFlex();
+            flex-flow: column;
+            justify-content: space-between;
+            align-items: center;
+            height: $regular-slideshow-tools-height;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            .project-thumbnails {
+                width: calc(100% - 6px);
+                width: -moz-calc(100% - 6px);
+                width: -webkit-calc(100% - 6px);
+                overflow-y: hidden;
+                overflow-x: auto;
+                height: $regular-slideshow-thumbnails-toolbar-height;
+                ul {
+                    @include displayFlex();
+                    flex-flow: row;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    width: 100%;
+                    li {
+                        width: 15%;
+                        flex-shrink: 0;
+                        margin-right: 10px;
+                        img {
+                            height: $regular-slideshow-thumbnails-toolbar-height * .75;
+                            width: 100%;
+                            margin: 5px;
+                            &.current-project-thumbnail {
+                                outline: solid 3px #9bffa3;
+                            }
                         }
                     }
                 }
             }
-        }
-        .slide-buttons {
-            @include displayFlex();
-            flex-flow: row;
-            justify-content: space-between;
-            align-items: center;
-            height: $regular-slideshow-slide-buttons-height;
-            width: 100%;
-            position: relative;
-            .slide-button {
-                font-size: 2.5em;
-                margin: 5px;
-                border-radius: 50%;
-                &:visited, &:active, &:link, &:focus{
-                    color: rgba(0,0,0,.5);
-                    background-color: rgba(255,255,255,.5);
-                    border: solid 2px rgba(255,255,255,.5);
+            .slide-buttons {
+                @include displayFlex();
+                flex-flow: row;
+                justify-content: space-between;
+                align-items: center;
+                height: $regular-slideshow-slide-buttons-height;
+                width: 100%;
+                position: relative;
+                .slide-button {
+                    font-size: 2.5em;
+                    margin: 5px;
+                    border-radius: 50%;
+                    &:visited,
+                    &:active,
+                    &:link,
+                    &:focus {
+                        color: rgba(0, 0, 0, .5);
+                        background-color: rgba(255, 255, 255, .5);
+                        border: solid 2px rgba(255, 255, 255, .5);
+                    }
+                    &:hover {
+                        border: solid 2px rgba(255, 255, 255, 1);
+                        color: rgba(0, 0, 0, 1);
+                        background-color: rgba(255, 255, 255, 1);
+                    }
                 }
-                &:hover{
-                    border: solid 2px rgba(255,255,255,1);
-                    color: rgba(0,0,0,1);
-                    background-color: rgba(255,255,255,1);
+                .maximize-image {
+                    @extend .slide-button;
+                    font-size: 2em;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
                 }
-                
             }
-            .maximize-image {
-                @extend .slide-button;
-                font-size: 2em;
-                position: absolute;
+        }
+        .slide-section {
+            position: absolute;
+            top: $regular-slideshow-thumbnails-toolbar-height;
+            left: 0;
+            width: 100%;
+            .slides {
+                @include displayFlex();
+                overflow: hidden;
+                position: relative;
                 top: 0;
-                right: 0;
-            }
-        }
-        .project-information {
-            font-family: monospace;
-            color: white;
-            background-color: #313131;
-            width: 100%;
-            h3 {
-                font-weight: bold;
-            }
-            .project-links {
-                padding: 5px 0px 5px 0px;
-                .project-link {
-                    margin: 10px;
-                    font-size: large;
-                    color: white;
-                }
+                left: 0;
+                height: $regular-slides-height;
+                width: 100%;
             }
         }
     }
-    .slide-section {
-        position: absolute;
-        top: $regular-slideshow-thumbnails-toolbar-height;
-        left: 0;
+    .current-slide-details {
+        font-family: monospace;
+        color: white;
         width: 100%;
-        .slides {
-            @include displayFlex();
-            overflow: hidden;
-            position: relative;
-            top: 0;
-            left: 0;
-            height: $regular-slides-height;
-            width: 100%;
+        padding: 0 3%;
+        h4.slideName {
+            font-weight: 900;
+            @include animation(revealSlideDetails 1s ease-in backwards);
+        }
+        .description {
+            &.new {
+                @include animation(revealSlideDetails 1s ease-in backwards);
+            }
+        }
+        .project-links {
+            padding: 5px 0px 5px 0px;
+            .project-link {
+                margin: 10px;
+                font-size: large;
+                color: white;
+                @include animation(revealSlideDetails 1s ease-in backwards);
+            }
         }
     }
 }
@@ -366,8 +384,6 @@ ul {
         display: none;
     }
 }
-
-
 
 //older browsers exclusive
 .current-slide {
@@ -439,30 +455,32 @@ ul {
 }
 
 //Mobile Only
-@media screen and (max-device-width: 767px) {
-    .slideshow {
-        height: $mobile-slideshow-height;
-        .project-tools {
-            height: $mobile-slideshow-tools-height;
-            .project-thumbnails {
-                height: $mobile-slideshow-thumbnails-toolbar-height;
-                ul {
-                    li {
-                        width: 33%;
-                        img {
-                            height: $mobile-slideshow-thumbnails-toolbar-height * .75;
+@media only screen and (max-device-width: 767px) {
+    .slideshow-container {
+        .slideshow-main {
+            height: $mobile-slideshow-height;
+            .project-tools {
+                height: $mobile-slideshow-tools-height;
+                .project-thumbnails {
+                    height: $mobile-slideshow-thumbnails-toolbar-height;
+                    ul {
+                        li {
+                            width: 40%;
+                            img {
+                                height: $mobile-slideshow-thumbnails-toolbar-height * .75;
+                            }
                         }
                     }
                 }
+                .slide-buttons {
+                    height: $mobile-slideshow-slide-buttons-height;
+                }
             }
-            .slide-buttons {
-                height: $mobile-slideshow-slide-buttons-height;
-            }
-        }
-        .slide-section {
-            top: $mobile-slideshow-thumbnails-toolbar-height;
-            .slides {
-                height: $mobile-slides-height;
+            .slide-section {
+                top: $mobile-slideshow-thumbnails-toolbar-height;
+                .slides {
+                    height: $mobile-slides-height;
+                }
             }
         }
     }

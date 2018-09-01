@@ -163,104 +163,127 @@ ul {
     -o-transform: rotate(0deg) scale(1, 1);
     -ms-transform: rotate(0deg) scale(1, 1);
     transform: rotate(0deg) scale(1, 1); } }
-.slideshow {
-  display: -webkit-flex;
-  display: flex;
+@keyframes revealSlideDetails {
+  0% {
+    color: rgba(255, 255, 255, 0); }
+  100% {
+    color: white; } }
+.slideshow-container {
   margin: 20px 1.5%;
   background-color: #313131;
-  height: 600px;
   width: 97%;
-  position: relative; }
-  .slideshow .project-tools {
+  outline: solid 3px black; }
+  .slideshow-container .slideshow-main {
     display: -webkit-flex;
     display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 600px;
     width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    outline: solid 3px black; }
-    .slideshow .project-tools .project-thumbnails {
-      width: calc(100% - 6px);
-      width: -moz-calc(100% - 6px);
-      width: -webkit-calc(100% - 6px);
-      overflow-y: hidden;
-      overflow-x: auto;
-      height: 120px; }
-      .slideshow .project-tools .project-thumbnails ul {
+    height: 600px;
+    position: relative; }
+    .slideshow-container .slideshow-main .project-tools {
+      display: -webkit-flex;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 600px;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 50; }
+      .slideshow-container .slideshow-main .project-tools .project-thumbnails {
+        width: calc(100% - 6px);
+        width: -moz-calc(100% - 6px);
+        width: -webkit-calc(100% - 6px);
+        overflow-y: hidden;
+        overflow-x: auto;
+        height: 120px; }
+        .slideshow-container .slideshow-main .project-tools .project-thumbnails ul {
+          display: -webkit-flex;
+          display: flex;
+          flex-flow: row;
+          justify-content: flex-start;
+          align-items: flex-start;
+          width: 100%; }
+          .slideshow-container .slideshow-main .project-tools .project-thumbnails ul li {
+            width: 15%;
+            flex-shrink: 0;
+            margin-right: 10px; }
+            .slideshow-container .slideshow-main .project-tools .project-thumbnails ul li img {
+              height: 90px;
+              width: 100%;
+              margin: 5px; }
+              .slideshow-container .slideshow-main .project-tools .project-thumbnails ul li img.current-project-thumbnail {
+                outline: solid 3px #9bffa3; }
+      .slideshow-container .slideshow-main .project-tools .slide-buttons {
         display: -webkit-flex;
         display: flex;
         flex-flow: row;
-        justify-content: flex-start;
-        align-items: flex-start;
-        width: 100%; }
-        .slideshow .project-tools .project-thumbnails ul li {
-          width: 15%;
-          flex-shrink: 0;
-          margin-right: 10px; }
-          .slideshow .project-tools .project-thumbnails ul li img {
-            height: 90px;
-            width: 100%;
-            margin: 5px; }
-            .slideshow .project-tools .project-thumbnails ul li img.current-project-thumbnail {
-              outline: solid 3px #9bffa3; }
-    .slideshow .project-tools .slide-buttons {
-      display: -webkit-flex;
-      display: flex;
-      flex-flow: row;
-      justify-content: space-between;
-      align-items: center;
-      height: 390px;
-      width: 100%;
-      position: relative; }
-      .slideshow .project-tools .slide-buttons .slide-button, .slideshow .project-tools .slide-buttons .maximize-image {
-        font-size: 2.5em;
-        margin: 5px;
-        border-radius: 50%; }
-        .slideshow .project-tools .slide-buttons .slide-button:visited, .slideshow .project-tools .slide-buttons .maximize-image:visited, .slideshow .project-tools .slide-buttons .slide-button:active, .slideshow .project-tools .slide-buttons .maximize-image:active, .slideshow .project-tools .slide-buttons .slide-button:link, .slideshow .project-tools .slide-buttons .maximize-image:link, .slideshow .project-tools .slide-buttons .slide-button:focus, .slideshow .project-tools .slide-buttons .maximize-image:focus {
-          color: rgba(0, 0, 0, 0.5);
-          background-color: rgba(255, 255, 255, 0.5);
-          border: solid 2px rgba(255, 255, 255, 0.5); }
-        .slideshow .project-tools .slide-buttons .slide-button:hover, .slideshow .project-tools .slide-buttons .maximize-image:hover {
-          border: solid 2px white;
-          color: black;
-          background-color: white; }
-      .slideshow .project-tools .slide-buttons .maximize-image {
-        font-size: 2em;
-        position: absolute;
-        top: 0;
-        right: 0; }
-    .slideshow .project-tools .project-information {
-      font-family: monospace;
-      color: white;
-      background-color: #313131;
-      width: 100%; }
-      .slideshow .project-tools .project-information h3 {
-        font-weight: bold; }
-      .slideshow .project-tools .project-information .project-links {
-        padding: 5px 0px 5px 0px; }
-        .slideshow .project-tools .project-information .project-links .project-link {
-          margin: 10px;
-          font-size: large;
-          color: white; }
-  .slideshow .slide-section {
-    position: absolute;
-    top: 120px;
-    left: 0;
-    width: 100%; }
-    .slideshow .slide-section .slides {
-      display: -webkit-flex;
-      display: flex;
-      overflow: hidden;
-      position: relative;
-      top: 0;
+        justify-content: space-between;
+        align-items: center;
+        height: 480px;
+        width: 100%;
+        position: relative; }
+        .slideshow-container .slideshow-main .project-tools .slide-buttons .slide-button, .slideshow-container .slideshow-main .project-tools .slide-buttons .maximize-image {
+          font-size: 2.5em;
+          margin: 5px;
+          border-radius: 50%; }
+          .slideshow-container .slideshow-main .project-tools .slide-buttons .slide-button:visited, .slideshow-container .slideshow-main .project-tools .slide-buttons .maximize-image:visited, .slideshow-container .slideshow-main .project-tools .slide-buttons .slide-button:active, .slideshow-container .slideshow-main .project-tools .slide-buttons .maximize-image:active, .slideshow-container .slideshow-main .project-tools .slide-buttons .slide-button:link, .slideshow-container .slideshow-main .project-tools .slide-buttons .maximize-image:link, .slideshow-container .slideshow-main .project-tools .slide-buttons .slide-button:focus, .slideshow-container .slideshow-main .project-tools .slide-buttons .maximize-image:focus {
+            color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.5);
+            border: solid 2px rgba(255, 255, 255, 0.5); }
+          .slideshow-container .slideshow-main .project-tools .slide-buttons .slide-button:hover, .slideshow-container .slideshow-main .project-tools .slide-buttons .maximize-image:hover {
+            border: solid 2px white;
+            color: black;
+            background-color: white; }
+        .slideshow-container .slideshow-main .project-tools .slide-buttons .maximize-image {
+          font-size: 2em;
+          position: absolute;
+          top: 0;
+          right: 0; }
+    .slideshow-container .slideshow-main .slide-section {
+      position: absolute;
+      top: 120px;
       left: 0;
-      height: 480px;
       width: 100%; }
+      .slideshow-container .slideshow-main .slide-section .slides {
+        display: -webkit-flex;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 480px;
+        width: 100%; }
+  .slideshow-container .current-slide-details {
+    font-family: monospace;
+    color: white;
+    width: 100%;
+    padding: 0 3%; }
+    .slideshow-container .current-slide-details h4.slideName {
+      font-weight: 900;
+      -webkit-animation: revealSlideDetails 1s ease-in backwards;
+      -moz-animation: revealSlideDetails 1s ease-in backwards;
+      -o-animation: revealSlideDetails 1s ease-in backwards;
+      -ms-animation: revealSlideDetails 1s ease-in backwards;
+      animation: revealSlideDetails 1s ease-in backwards; }
+    .slideshow-container .current-slide-details .description.new {
+      -webkit-animation: revealSlideDetails 1s ease-in backwards;
+      -moz-animation: revealSlideDetails 1s ease-in backwards;
+      -o-animation: revealSlideDetails 1s ease-in backwards;
+      -ms-animation: revealSlideDetails 1s ease-in backwards;
+      animation: revealSlideDetails 1s ease-in backwards; }
+    .slideshow-container .current-slide-details .project-links {
+      padding: 5px 0px 5px 0px; }
+      .slideshow-container .current-slide-details .project-links .project-link {
+        margin: 10px;
+        font-size: large;
+        color: white;
+        -webkit-animation: revealSlideDetails 1s ease-in backwards;
+        -moz-animation: revealSlideDetails 1s ease-in backwards;
+        -o-animation: revealSlideDetails 1s ease-in backwards;
+        -ms-animation: revealSlideDetails 1s ease-in backwards;
+        animation: revealSlideDetails 1s ease-in backwards; }
 
 .slide {
   position: absolute;
@@ -339,22 +362,22 @@ ul {
       animation: maintainImageAspect 1s ease-in backwards;
       flex-shrink: 0;
       display: block; } }
-@media screen and (max-device-width: 767px) {
-  .slideshow {
+@media only screen and (max-device-width: 767px) {
+  .slideshow-container .slideshow-main {
     height: 100vh; }
-    .slideshow .project-tools {
+    .slideshow-container .slideshow-main .project-tools {
       height: 100vh; }
-      .slideshow .project-tools .project-thumbnails {
+      .slideshow-container .slideshow-main .project-tools .project-thumbnails {
         height: 20vh; }
-        .slideshow .project-tools .project-thumbnails ul li {
-          width: 33%; }
-          .slideshow .project-tools .project-thumbnails ul li img {
+        .slideshow-container .slideshow-main .project-tools .project-thumbnails ul li {
+          width: 40%; }
+          .slideshow-container .slideshow-main .project-tools .project-thumbnails ul li img {
             height: 15vh; }
-      .slideshow .project-tools .slide-buttons {
-        height: 65vh; }
-    .slideshow .slide-section {
+      .slideshow-container .slideshow-main .project-tools .slide-buttons {
+        height: 80vh; }
+    .slideshow-container .slideshow-main .slide-section {
       top: 20vh; }
-      .slideshow .slide-section .slides {
+      .slideshow-container .slideshow-main .slide-section .slides {
         height: 80vh; }
 
   .slide img {
