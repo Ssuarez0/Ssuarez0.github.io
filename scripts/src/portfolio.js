@@ -24,7 +24,7 @@ var currentProjects = [{
     key: 1,
     name: "Pomodoro Clock",
     description: "An alternating clock to help users keep track of taking regular breaks. </br><strong>Technology stack:</strong> ES6, React.js, SCSS, Bootstrap.",
-    projectImg: "./media/images/PomodoroClock.png",
+    projectImg: "./media/images/PomodoroClock.PNG",
     githubLink: "",
     codepenLink: "https://codepen.io/CodeAni/pen/Zjojdr",
     websiteLink: "https://codepen.io/CodeAni/full/Zjojdr/"
