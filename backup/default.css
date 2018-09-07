@@ -1,4 +1,10 @@
-﻿body {
+﻿/* 
+Style: List of projects. 
+This file is a backup for the original way I styled my portfolio in case I ever want to go back.
+With this stylesheet, all projects are styled in a 2 column list that is left-aligned.
+*/
+
+body {
     background: url(../images/office2.jpg) no-repeat center center fixed;
     background-color: #05241a;
     -webkit-background-size: cover;

@@ -1,2 +1,5 @@
 # ignore nodemodules
 node_modules
+# ignore sass conversion maps and caches
+media/styles/css/default.css.map
+media/styles/.sass-cache

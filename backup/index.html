@@ -11,21 +11,11 @@
         <script type="text/javascript" src="scripts/dist/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="media/styles/dist/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="media/styles/dist/fontawesome-all.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-        <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-        <script>
-            //Fallback for CDN of React
-            if (typeof React == 'undefined') {
-                document.write(unescape("%3Cscript src='../dist/react.production.min.js' type='text/javascript'%3E%3C/script%3E"));
-            }
-            if (typeof ReactDOM == 'undefined') {
-                document.write(unescape("%3Cscript src='../dist/react-dom.production.min.js' type='text/javascript'%3E%3C/script%3E"));
-            }
-        </script>
-        <!--My css-->
+        <script src="https://unpkg.com/react@16/umd/react.production.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.js" crossorigin></script>
+        <!--My css and scripts-->
         <link rel="stylesheet" href="media/styles/css/default.css" />
-        
-
+        <script type="text/javascript" src="scripts/portfolio.js"></script>
     </head>
 
     <body data-spy="scroll" data-target="#navheader" data-offset="0">
@@ -64,38 +54,35 @@
                 <div class="col-xs-12">
                     <img class="img-thumbnail img-circle profile-image center-block" src="media/images/me.jpg" alt="Profile Image" />
                 </div>
-                <div class="col-xs-12">
-                    <div class="centered-intro">
-                        <blockquote>
-                            <div>
-                                My number one priority, and the aspect of my job that I enjoy the most, is the human-centered design aspect; because I believe
-                                that a project that doesn't work for its users doesn't work at all.
-                                <footer class="block-citation">
-                                    <cite>
-                                        Stefan Suarez
-                                    </cite>
-                                </footer>
-                            </div>
-                        </blockquote>
-                        I am a Full-Stack and Software Developer with hands-on experience and an ever-expanding skillset. Throughout my schooling
-                        and experience in the CS field, I have proven myself as being both punctual to a fault as well as
-                        a quick learner. Additionally, I have a proven track record on all previous projects that I have
-                        contributed to: showing myself to be equally adept and resourceful in interpretation and implementation
-                        alike. If you wish to examine some of those previous projects, my portfolio is below along with links
-                        to various repositories and websites that I have worked on; and, if you wish to contact me for an
-                        interview or even just to network, I can easily be reached by any of the methods listed in my <a
-                            class="enclosed-anchor scrollable" href="#contact-nav">contact</a> section for this page. Thank you
-                        for reading, and have a pleasant day.
-                        <header class="text-center">
-                            <h3 class="subsection-header"> Skills </h3>
-                        </header>
-                        <div class="text-center skills-list">
-                            <h4>
-                                Python &middot; C++ &middot; PHP &middot; Django &middot; Javascript &middot; jQuery &middot; CSS &middot; HTML5 &middot;
-                                Bootstrap &middot; Git &middot; MySQL &middot; PostgreSQL &middot; SQlite3 &middot; Windows
-                                &middot; Mac &middot; Linux &middot; C# &middot; WPF &middot; React.js
-                            </h4>
+                <div class="col-xs-11 col-xs-offset-05">
+                    <blockquote>
+                        <div>
+                            My number one priority, and the aspect of my job that I enjoy the most, is the human-centered design aspect; because I believe
+                            that a project that doesn't work for its users doesn't work at all.
+                            <footer class="block-citation">
+                                <cite>
+                                    Stefan Suarez
+                                </cite>
+                            </footer>
                         </div>
+                    </blockquote>
+                    I am a Full-Stack and Software Developer with hands-on experience and an ever-expanding skillset. Throughout my schooling
+                    and experience in the CS field, I have proven myself as being both punctual to a fault as well as a quick
+                    learner. Additionally, I have a proven track record on all previous projects that I have contributed
+                    to: showing myself to be equally adept and resourceful in interpretation and implementation alike. If
+                    you wish to examine some of those previous projects, my portfolio is below along with links to various
+                    repositories and websites that I have worked on; and, if you wish to contact me for an interview or even
+                    just to network, I can easily be reached by any of the methods listed in my <a class="enclosed-anchor scrollable"
+                        href="#contact-nav">contact</a> section for this page. Thank you for reading, and have a pleasant day.
+                    <header class="text-center">
+                        <h3 class="subsection-header"> Skills </h3>
+                    </header>
+                    <div class="text-center skills-list">
+                        <h4>
+                            Python &middot; C++ &middot; PHP &middot; Django &middot; Javascript &middot; jQuery &middot; CSS &middot; HTML5 &middot;
+                            Bootstrap &middot; Git &middot; MySQL &middot; PostgreSQL &middot; SQlite3 &middot; Windows &middot;
+                            Mac &middot; Linux &middot; C# &middot; WPF &middot; React.js
+                        </h4>
                     </div>
                 </div>
             </div>
@@ -119,7 +106,8 @@
                             <img class="img-responsive project-thumbnail" src="media/images/spanishFrequency.PNG" alt="Picture of a Spanish Natural Language Analyzer."
                                 title="Picture of a Spanish Natural Language Analyzer." />
                             <div class="project-links">
-                                <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/spanish-nl-analyzer"><i class="fab fa-github"></i></a>
+                                <a class="project-link" title="Github" target="_blank" href="https://github.com/Ssuarez0/spanish-nl-analyzer"><i
+                                        class="fab fa-github"></i></a>
                             </div>
                         </li>
                         <li class="col-xs-12 col-s-5 col-md-5 col-lg-5 project-panel">
@@ -187,9 +175,7 @@
                 <i class="fas fa-home"></i>
             </a>
         </div>
-        <!--My javascript-->
-        <script type="text/javascript" src="scripts/src/portfolio.js"></script>
-        <script type="text/javascript" src="scripts/src/scroll.js"></script>
     </body>
+
     </html>
 </DOCTYPE!>
